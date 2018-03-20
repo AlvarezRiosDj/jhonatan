@@ -1,0 +1,317 @@
+
+<style>
+  a[href="#img-slider"]{
+    
+    display: none;
+  }
+
+  #cancel-slider{
+    color: white;
+  }
+  #form-slider-edit{
+    display: none;
+  }
+
+</style>
+<div class="card-box">
+
+<h4>Slider</h4>
+<form action="" id="form-slider">
+<div class="row">
+  <div class="col-sm-6">
+    <div class="form-group">
+        <label for="title-slider">Titulo<span class="kv-reqd">*</span></label>
+        <input type="text" id="title-slider" name="name" class="form-control" required>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="form-group">
+        <label for="description-slider">Descripcion<span class="kv-reqd">*</span></label>
+        <input type="text" id="description-slider" name="description" class="form-control" required>
+    </div>
+  </div>
+
+</div>
+<div class="form-group">
+    <hr>
+    <div class="text-right">
+        <input type="text" name="tipo" value="slider" hidden>
+        <button type="submit" id="btn-crear" class="btn btn-primary">Crear</button>
+ 
+    </div>
+</div>
+</form>
+
+<form action="" id="form-slider-edit">
+<div class="row">
+  <div class="col-sm-6">
+    <div class="form-group">
+        <label for="title-slider-edit">Titulo<span class="kv-reqd">*</span></label>
+        <input type="text" id="title-slider-edit" name="name" class="form-control" required>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="form-group">
+        <label for="description-slider-edit">Descripcion<span class="kv-reqd">*</span></label>
+        <input type="text" id="description-slider-edit" name="description" class="form-control" required>
+    </div>
+  </div>
+
+</div>
+<div class="form-group">
+    <hr>
+    <div class="text-right">
+      <input type="text" id="id-slider" hidden>
+        <button type="submit" id="btn-crear" class="btn btn-primary">Editar</button>
+      <a type="submit" id="cancel-slider" class="btn btn-primary">Cancelar</a>
+    </div>
+</div>
+</form>
+<p>
+  <a class="btn btn-primary" data-toggle="collapse" href="#img-slider" role="button" aria-expanded="false" aria-controls="collapseExample">
+   Seleccione las imagenes
+  </a>
+  
+  
+</p>
+<div class="collapse" id="img-slider">
+
+  <div class="card card-body">
+ 
+
+  <div class="file-loading">
+    <input id="slider" name="slider" type="file" multiple>
+  </div>
+
+
+
+  </div>
+</div>
+
+
+
+
+
+</div>
+
+
+ <div class="card-box table-responsive"> 
+  <table id="table-slider" class="table table-bordered">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>Titulo</th>
+            <th>Descripcion</th>
+            <th>Fecha Creacion</th>
+            <th>Fecha Modificacion</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+
+
+<script>
+  var protocolo = window.location.protocol;
+    var dominio = window.location.host;
+    var urlcorta = protocolo+'//'+dominio;
+
+
+
+
+
+function slider(id){
+  var images = [];
+  var captions = [];
+  $.ajax({
+      url:'/slider/show/'+id,
+      type:'GET',
+      async:false 
+    }).done(function(data){
+      $(data).each(function(key,value){       
+        images.push(urlcorta+'/'+value['route']);
+        captions.push({caption: value['name'], size: value['size'], url: "/slider/delete/"+value['id']});
+      });
+    });
+
+
+
+  $("#slider").fileinput({
+        uploadUrl: "/slider/"+id,
+        language:"es",
+        theme:"fa",
+        allowedFileExtensions: ['jpg', 'png', 'gif'],
+        maxImageWidth: 800,
+        resizeImage: true,
+        browseOnZoneClick: true,
+        maxFileCount: 5,
+        overwriteInitial: false,
+        initialPreview: images,
+        initialPreviewAsData: true,
+        initialPreviewFileType: 'image',
+        initialPreviewConfig: captions       
+      }).on('fileunlock', function() {
+        $('#slider').fileinput('destroy'); 
+        slider(id);  
+    });;
+}
+  
+
+
+
+</script>
+
+<script>
+  $(function(){
+
+  var table_slider = $('#table-slider').DataTable({
+        ajax:{
+            type:'GET',
+            url:'/img',
+            dataSrc:''
+        },
+        columns:[
+            {"data":"id",visible:false},
+            {"data" : "name"},
+            {"data" : "description"},
+            {"data" : "created_at"},
+            {"data" : "updated_at"},
+            {"defaultContent" : '<div class="btn-group" role="group">\
+<button id="btnGroupDrop1" type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">\
+Acciones</button>\
+<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">\
+<a class="dropdown-item" href="#editar">Editar</a>\
+<a class="dropdown-item" href="#eliminar">Eliminar</a>\
+</div>\
+</div>'}
+        ],
+        "order":[[0,"desc"]]
+    });
+
+
+
+$('#table-slider').on('click','a[href="#editar"]',function(){
+  $('#slider').fileinput('destroy'); 
+  var recuperaDatos = table_slider.row($(this).parents("tr")).data();
+  $('#id-slider').val(recuperaDatos['id']);
+  $('#title-slider-edit').val(recuperaDatos['name']);
+  $('#description-slider-edit').val(recuperaDatos['description']);
+  $('#form-slider-edit').css('display','block');
+  $('#form-slider').css('display','none');
+  $('a[href="#img-slider"]').css('display','inline');
+
+  $('#table-slider tr').css('background','white').css('color','black');
+    $(this).parents('tr').css('background','#FF5733').css('color','white');
+
+
+  slider($('#id-slider').val());
+});
+
+
+
+$('#table-slider').on('click','a[href="#eliminar"]',function(){
+  alert("hiciste click en eliminar");
+});
+
+
+    $('#form-slider').validate({
+      rules:{
+        'name':{required:true},
+        'description':{required:true}
+      },
+      messages:{
+        'name':{required:"Por favor complete el titulo"},
+        'description':{required:"Por favor complete la Descripcion"}
+      },
+      submitHandler:function(data){
+
+        var storeMultimedia = new FormData($('#form-slider')[0]);
+        $.ajax({
+          url:'multimedia',
+          headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+          method:'POST',
+          data:storeMultimedia,
+          processData:false,
+          contentType:false
+        }).done(function(data){         
+          slider(data);
+          table_slider.ajax.reload();
+          $('a[href="#img-slider"]').css('display','inline');
+          $.Notification.notify('success', 'bottom right', 'Seleccione las imagenes');
+          $('#btn-crear').css('display','none');
+          $('#title-slider').attr('disabled','true');
+          $('#description-slider').attr('disabled','true');
+        }).fail(function(data){
+          if (data.status === 401) {
+            $(location).prop('pathname','');
+          }
+          if (data.status === 422) {
+            $errors = data.responseJSON;
+            $.each($errors,function(key,value){
+              if ((value['title-slider'])!=undefined) {
+                $.Notification.notify('error', 'bottom right', 'El titulo para este slider ya esta en uso');
+              }
+            });
+          }
+        });
+      }
+    });
+
+    $('#form-slider-edit').validate({
+      rules:{
+        'name':{required:true},
+        'description':{required:true}
+      },
+      messages:{
+        'name':{required:"Por favor ingrese el titulo"},
+        'description':{required:"Por favor ingrese la descripcion"}
+      },
+      submitHandler:function(form){
+        var updateSlider = new FormData($('#form-slider-edit')[0]);
+        updateSlider.append('_method','PUT');
+        $.ajax({
+          url:'multimedia/'+$('#id-slider').val(),
+          headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+          method:'POST',
+          data:updateSlider,
+          processData:false,
+          contentType:false
+        }).done(function(data){
+          table_slider.ajax.reload();
+          $.Notification.notify('success', 'bottom right', 'Los datos fueron actualizados con exito');
+          $('#slider').fileinput('destroy');
+          $('#form-slider').css('display','block');
+          $('#form-slider-edit').css('display','none');
+          $('a[href="#img-slider"]').css('display','none');
+        }).fail(function(data){
+          if (data.status === 401) {
+            $(location).prop('pathname','');
+          }
+          if (data.status === 422) {
+            $errors = data.responseJSON;
+            $.each($errors,function(key,value){
+              if ((value['title-slider-edit'])!=undefined) {
+                $.Notification.notify('error', 'bottom right', 'El titulo para este slider ya esta en uso');
+              }
+            });
+          }
+        });
+      }
+    });
+
+
+
+  $('#cancel-slider').click(function(){
+    $('#slider').fileinput('destroy');
+    $('#form-slider').css('display','block');
+    $('#form-slider-edit').css('display','none');
+    $('a[href="#img-slider"]').css('display','none');
+    $('#table-slider tr').css('background','white').css('color','black');
+      
+  });
+
+  });
+</script>

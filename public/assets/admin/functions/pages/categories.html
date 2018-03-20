@@ -1,0 +1,357 @@
+<style>
+.kv-avatar .krajee-default.file-preview-frame,.kv-avatar .krajee-default.file-preview-frame:hover {
+margin: 0;
+padding: 0;
+border: none;
+box-shadow: none;
+text-align: center;
+}
+.kv-avatar {
+display: inline-block;
+}
+.kv-avatar .file-input {
+display: table-cell;
+width: 213px;
+}
+.kv-reqd {
+color: red;
+font-family: monospace;
+font-weight: normal;
+}
+i[id^='edit']{
+    cursor: pointer;
+}
+
+#form-categorie-edit{
+    display: none;
+}
+
+#edit-cancel-categorie, #input-submit-categorie{
+    cursor: pointer;
+    color: white;
+}
+
+
+</style>
+<div class="card-box">
+    <h4 class="header-title m-t-0 m-b-30">CATEGORIAS</h4>
+    <!-- markup -->
+    <!-- note: your server code `avatar_upload.php` will receive `$_FILES['avatar']` on form submission -->
+    <!-- the avatar markup -->
+    <form class="form form-vertical" id="form-categorie" action="/avatar_upload.php" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div class="kv-avatar">
+                    <div class="file-loading">
+                        <input id="input-img-categorie" name="input-img-categorie" type="file" required>
+                    </div>
+                </div>
+                <div class="kv-avatar-hint"><small>Select file < 1500 KB</small></div>
+            </div>
+            <div class="col-md-12 offset-md-4">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="input-name-categorie">Titulo<span class="kv-reqd">*</span></label>
+                            <input type="text" id="input-name-categorie" name="input-name-categorie" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="input-description-categorie">Descripcion<span class="kv-reqd">*</span></label>
+                            <textarea name="input-description-categorie" id="input-description-categorie" cols="30" rows="10" class='form-control' required></textarea>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="pwd">Idioma<span class="kv-reqd">*</span></label>
+                            <select name="input-language-categorie" id="input-language-categorie" class="form-control">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="input-principal-categorie">Categoria Principal<span class="kv-reqd">*</span></label>
+                            <select name="input-principal-categorie" id="input-principal-categorie" class="form-control">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <hr>
+                    <div class="text-right">
+                      
+                        <button type="submit" id="input-submit-categorie" class="btn btn-primary">Guardar</a>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form class="form form-vertical" id="form-categorie-edit" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <div class="kv-avatar">
+                <div class="file-loading">
+                    <input id="edit-img-categorie" name="edit-img-categorie" type="file">
+                </div>
+            </div>
+            <div class="kv-avatar-hint"><small>Select file < 1500 KB</small></div>
+        </div>
+        <div class="col-md-12 offset-md-4">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="edit-name-categorie">Titulo<span class="kv-reqd">*</span></label>
+                        <input type="text" id="edit-name-categorie" name="edit-name-categorie" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="edit-description-categorie">Descripcion<span class="kv-reqd">*</span></label>
+                        <textarea name="edit-description-categorie" id="edit-description-categorie" cols="30" rows="10" class='form-control' required></textarea>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="pwd">Idioma<span class="kv-reqd">*</span></label>
+                        <select name="edit-language-categorie" id="edit-language-categorie" class="form-control" disabled>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="edit-principal-categorie">Categoria Principal<span class="kv-reqd">*</span></label>
+                        <select name="edit-principal-categorie" id="edit-principal-categorie" class="form-control" disabled>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <hr>
+                <div class="text-right">
+                    <input type="text" id="edit-id-categorie" hidden>
+                    <button type="submit" id="edit-submit-categorie" class="btn btn-primary">Actualizar</button>
+                    <a id="edit-cancel-categorie" class="btn btn-primary">Cancelar</a>
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+    <div id="kv-avatar-errors-1" class="center-block" style="width:800px;display:none"></div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card-box">
+            <h4 class="text-dark header-title m-t-0 m-b-30">CATEGORIAS</h4>
+            <div id="basicTree">
+                <ul id="0">
+                </ul>
+            </div>
+        </div>
+        </div><!-- end col -->
+    </div>
+    <!-- the fileinput plugin initialization -->
+    <script>
+    $("#input-img-categorie").fileinput({
+    language: "es",
+    overwriteInitial: true,
+    maxFileSize: 10000,
+    showClose: false,
+    showCaption: false,
+    browseLabel: '',
+    removeLabel: '',
+    browseIcon: '<i class="fa fa-folder-open"></i>',
+    removeIcon: '<i class="ion-close"></i>',
+    removeTitle: 'Cancel or reset changes',
+    elErrorContainer: '#kv-avatar-errors-1',
+    msgErrorClass: 'alert alert-block alert-danger',
+    defaultPreviewContent: '<i class="fa  fa-tag"></i>',
+    layoutTemplates: {main2: '{preview} ' + ' {remove} {browse}'},
+    allowedFileExtensions: ["jpg", "png", "gif"]
+    });
+    $("#edit-img-categorie").fileinput({
+    language: "es",
+    overwriteInitial: true,
+    maxFileSize: 10000,
+    showClose: false,
+    showCaption: false,
+    browseLabel: '',
+    removeLabel: '',
+    browseIcon: '<i class="fa fa-folder-open"></i>',
+    removeIcon: '<i class="ion-close"></i>',
+    removeTitle: 'Cancel or reset changes',
+    elErrorContainer: '#kv-avatar-errors-1',
+    msgErrorClass: 'alert alert-block alert-danger',
+    defaultPreviewContent: '<i class="fa  fa-tag"></i>',
+    layoutTemplates: {main2: '{preview} ' + ' {remove} {browse}'},
+    allowedFileExtensions: ["jpg", "png", "gif"]
+    });
+
+    </script>
+    
+    <script>
+
+
+
+    $(function(){
+    var protocolo = window.location.protocol;
+    var dominio = window.location.host;
+
+    recuperarIdiomaCategoria(1);
+
+    function recuperarIdiomaCategoria(id){
+    var idiomas = '';
+    var categorias='<option value="0">Ninguna</option>';
+    var categoria_desplegable='';
+    $('#basicTree ul#0').html('');
+    $.ajax({
+    url: '/categorie',
+    async:false,
+    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+    method: 'GET',
+    data:{id:id}
+    }).done(function(data){
+    for(datas in data.lang){
+    idiomas+='<option value="'+data.lang[datas].id+'">'+data.lang[datas].name+'</option>';
+    }
+    for(ct in data.categorie){
+    categorias+='<option value="'+data.categorie[ct].id+'">'+data.categorie[ct].name+'</option>';
+    }
+    for(info in data.categorie){
+    if(data.categorie[info].categorie_principal==0){
+    $('#basicTree ul#0').append('<li value="'+data.categorie[info].id+'">'+data.categorie[info].name+'&nbsp;&nbsp;&nbsp;<i id="edit'+data.categorie[info].id+'" class="fa fa-pencil"></i><ul id="'+data.categorie[info].id+'"></ul></li>');
+    }
+    if(data.categorie[info].categorie_principal!=0){
+    $('ul#'+data.categorie[info].categorie_principal).append('<li>'+data.categorie[info].name+'&nbsp;&nbsp;&nbsp;<i id="edit'+data.categorie[info].id+'" class="fa fa-pencil"></i><ul id="'+data.categorie[info].id+'"></ul></li>');
+    }
+    }
+    if($('#input-language-categorie').val()==null){
+    $('#input-language-categorie').html(idiomas);
+    $('#edit-language-categorie').html(idiomas);
+    }
+    $('#input-principal-categorie').html('');
+    $('#input-principal-categorie').html(categorias);
+    $('#edit-principal-categorie').html(categorias);
+    });
+    recuperaCategoria();
+    }
+
+    
+    $('#input-language-categorie').change(function(){
+    recuperarIdiomaCategoria($(this).val());
+    });
+
+    $('#form-categorie').validate({
+    rules:{
+    'input-img-categorie':{required:true},
+    'input-name-categorie':{required:true},
+    'input-description-categorie':{required:true}
+    },
+    messages:{
+    'input-img-categorie':{required:"Seleccione una imagen"},
+    'input-name-categorie':{required:"El campo es requerido"},
+    'input-description-categorie':{required:"El campo es requerido"},
+    },
+    submitHandler:function(form){
+    var storeCategorie = new FormData($('#form-categorie')[0]);
+    $.ajax({
+    url:'/categorie',
+    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+    method:'POST',
+    data:storeCategorie,
+    processData: false,
+    contentType: false
+    }).done(function(data){
+    $.Notification.notify('success', 'bottom right', 'La categoria se almaceno correctamente');
+    $('#form-categorie')[0].reset();
+    recuperarIdiomaCategoria(1);
+    recuperarIdiomaCategoria($('#input-language-categorie').val())
+    });
+    }
+    });
+
+
+    $('#form-categorie-edit').validate({
+        rules:{
+            'edit-name-categorie':{required:true},
+            'edit-description-categorie':{required:true}
+        },
+        messages:{
+            'edit-name-categorie':{required:"el titulo es necesario"},
+            'edit-description-categorie':{required:"la descripcion es necesaria"}
+        },
+        submitHandler:function(form){
+            var update_categorie = new FormData($('#form-categorie-edit')[0]);
+            update_categorie.append("_method","PUT");
+            var idCategoria =$('#edit-id-categorie').val();
+            console.log(update_categorie);
+            $.ajax({
+                url:'/categorie/'+ idCategoria,
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                method: 'POST',
+                data:update_categorie,
+                processData:false,
+                contentType:false
+            }).done(function(data){
+                $.Notification.notify('success', 'bottom right', 'La categoria se actualizo correctamente');
+                $('#form-categorie-edit')[0].reset();
+                recuperarIdiomaCategoria(1);
+                recuperaCategoria();
+                $("#edit-img-categorie").fileinput('refresh',{
+                defaultPreviewContent: '<i class="fa  fa-tag"></i>'});
+                $("#edit-img-categorie").fileinput('clear');
+                $('#form-categorie-edit').css('display','none');
+                $('#form-categorie').css('display','block');
+
+            });
+        }
+    });
+
+  
+
+    
+    function recuperaCategoria(){
+    $('i[id^="edit"]').click(function(){
+        $('#form-categorie-edit').css('display','block');
+        $('#form-categorie').css('display','none');
+        var recuperaid = ($(this).attr('id')).substring(4,5);
+        $('#edit-id-categorie').val(recuperaid);
+        $.ajax({
+            url:'/categorie/'+recuperaid,
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            method: 'GET'           
+        }).done(function(data){
+            $(data).each(function(key,value){
+                $('#edit-name-categorie').val(value.name);
+                $('#edit-description-categorie').val(value.description);
+                $("#edit-img-categorie").fileinput('refresh',{
+                defaultPreviewContent: '<img src="'+'/'+value.img+'" class="img-fluid">'});
+                $("#edit-img-categorie").fileinput('clear');
+                
+            });
+        });
+
+        
+    });
+    }
+
+
+
+
+
+    $('#edit-cancel-categorie').click(function(){
+        $('#form-categorie-edit').css('display','none');
+        $('#form-categorie').css('display','block');
+    });
+
+
+    });
+
+
+
+    </script>
+    <!-- <script src='assets/admin/plugins/jstree/jstree.min.js'></script>
+    <script src="assets/admin/pages/jquery.tree.js"></script>
+    -->

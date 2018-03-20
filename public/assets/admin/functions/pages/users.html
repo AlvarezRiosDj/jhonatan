@@ -1,0 +1,429 @@
+<!-- Inicio del contenido de users -->
+
+<style>
+.kv-avatar .krajee-default.file-preview-frame,.kv-avatar .krajee-default.file-preview-frame:hover {
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    text-align: center;
+}
+.kv-avatar {
+    display: inline-block;
+}
+.kv-avatar .file-input {
+    display: table-cell;
+    width: 213px;
+}
+.kv-reqd {
+    color: red;
+    font-family: monospace;
+    font-weight: normal;
+}
+
+#form-user-edit{
+  display: none;
+}
+</style>
+<div class="card-box">
+<form class="form form-vertical" id="form-user" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-sm-4 text-center">
+            <div class="kv-avatar">
+                <div class="file-loading">
+                    <input id="user-avatar" name="user-avatar" type="file">
+                </div>
+            </div>
+            <div class="kv-avatar-hint"><small>Select file < 1500 KB</small></div>
+        </div>
+        <div class="col-sm-8">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="name-user">Nombres</label>
+                <input type="text" class="form-control" name="name-user" id="name-user" required>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="last-name-user">Apellidos</label>
+                <input type="text" class="form-control" name="last-name-user" id="last-name-user" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="email-user">Email<span class="kv-reqd">*</span></label>
+                <input type="email" class="form-control" name="email-user" id="email-user" required>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="password-user">Password<span class="kv-reqd">*</span></label>
+                <input type="password" class="form-control" name="password-user" id="password-user" required>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="rep-password">Repetir Password<span class="kv-reqd">*</span></label>
+                <input type="password" class="form-control" name="rep-password" id="rep-password" required>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="privilege-user">Repetir Password<span class="kv-reqd">*</span></label>
+
+                <select name="privilege-user" id="privilege-user" class="form-control">
+                  <option value="Normal">Normal</option>
+                  <option value="Administrador">Administrador</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <hr>
+            <div class="text-right">
+              <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+          </div>
+        </div>
+    </div>
+</form>
+
+<form class="form form-vertical" id="form-user-edit" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-sm-4 text-center">
+            <div class="kv-avatar">
+                <div class="file-loading">
+                    <input id="user-avatar-edit" name="user-avatar-edit" type="file">
+                </div>
+            </div>
+            <div class="kv-avatar-hint"><small>Select file < 1500 KB</small></div>
+        </div>
+        <div class="col-sm-8">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="name-user-edit">Nombres</label>
+                <input type="text" class="form-control" name="name-user-edit" id="name-user-edit" required>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="last-name-user-edit">Apellidos</label>
+                <input type="text" class="form-control" name="last-name-user-edit" id="last-name-user-edit" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="email-user-edit">Email<span class="kv-reqd">*</span></label>
+                <input type="email" class="form-control" name="email-user-edit" id="email-user-edit" required readonly>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="password-user-edit">Password<span class="kv-reqd">*</span></label>
+                <input type="password" class="form-control" name="password-user-edit" id="password-user-edit" required>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="rep-password-edit">Repetir Password<span class="kv-reqd">*</span></label>
+                <input type="password" class="form-control" name="rep-password-edit" id="rep-password-edit" required>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="privilege-user-edit">Privilegios<span class="kv-reqd">*</span></label>
+
+                <select name="privilege-user-edit" id="privilege-user-edit" class="form-control">
+                  <option value="Normal">Normal</option>
+                  <option value="Administrador">Administrador</option>
+                </select>
+                <input type="text" name="id-user" id="id-user" hidden>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <hr>
+            <div class="text-right">
+              <button type="submit" class="btn btn-primary">Guardar</button>
+              <a href="#" class="btn btn-primary" id="cancel-user">Cancelar</a>
+            </div>
+          </div>
+        </div>
+    </div>
+</form>
+
+
+
+
+<div id="kv-avatar-errors-1" class="center-block" style="width:800px;display:none"></div>
+</div>
+
+<div class="card-box">
+	<table id="table-users" class="table table-bordered">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>Nombre</th>
+      <th>Apellidos</th>
+      <th>Email</th>
+      <th>Privilegio</th>
+      <th>Modificacion</th>
+      <th>Acciones</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</div>
+<!-- fin del contenido del users-->
+
+<!-- inicio del scrip de users-->
+
+<script>
+$("#user-avatar").fileinput({
+    overwriteInitial: true,
+    maxFileSize: 10000,
+    showClose: false,
+    showCaption: false,
+    browseLabel: '',
+    removeLabel: '',
+    browseIcon: '<i class="fa fa-folder-open"></i>',
+	removeIcon: '<i class="ion-close"></i>',
+    removeTitle: 'Cancel or reset changes',
+    elErrorContainer: '#kv-avatar-errors-1',
+    msgErrorClass: 'alert alert-block alert-danger',
+    defaultPreviewContent: '<img src="assets/admin/images/default_avatar_male.jpg" alt="Your Avatar">',
+    layoutTemplates: {main2: '{preview} ' + ' {remove} {browse}'},
+    allowedFileExtensions: ["jpg", "png", "gif"]
+});
+
+$("#user-avatar-edit").fileinput({
+    overwriteInitial: true,
+    maxFileSize: 10000,
+    showClose: false,
+    showCaption: false,
+    browseLabel: '',
+    removeLabel: '',
+    browseIcon: '<i class="fa fa-folder-open"></i>',
+    removeIcon: '<i class="ion-close"></i>',
+    removeTitle: 'Cancel or reset changes',
+    elErrorContainer: '#kv-avatar-errors-1',
+    msgErrorClass: 'alert alert-block alert-danger',
+    defaultPreviewContent: '<img src="assets/admin/images/default_avatar_male.jpg" alt="Your Avatar">',
+    layoutTemplates: {main2: '{preview} ' + ' {remove} {browse}'},
+    allowedFileExtensions: ["jpg", "png", "gif"]
+});
+
+
+
+</script>
+
+
+
+
+<script>
+
+$(function(){
+
+
+    var protocolo = window.location.protocol;
+    var dominio = window.location.host;
+    var urlcorta = protocolo+'//'+dominio;
+
+
+
+	var table_user = $('#table-users').DataTable({
+    ajax:{
+      type:'GET',
+      url:'/user',
+      dataSrc:''
+    },
+    columns:[
+    {"data" : "id",visible:false},
+    {"data": "first_name"},
+    {"data": "last_name"},
+    {"data" : "email"},
+    {"data" : "privilege"},
+    {"data" : "img",visible:false},
+    {"defaultContent" : '<div class="btn-group" role="group">\
+<button id="btnGroupDrop1" type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">\
+Acciones</button>\
+<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">\
+<a class="dropdown-item" href="#editar">Editar</a>\
+<a class="dropdown-item" href="#eliminar">Eliminar</a>\
+</div>\
+</div>'}
+    ],
+order: [[0,"desc"]]
+  });
+
+
+  $('#table-users').on('click','a[href="#eliminar"]',function(){
+    var recuperaDatos = table_user.row($(this).parents("tr")).data();
+    alert("funcion actualmente desabilitada");
+
+});
+
+
+  $('#table-users').on('click','a[href="#editar"]',function(){
+    var recuperaDatos = table_user.row($(this).parents("tr")).data();
+
+    $('#id-user').val(recuperaDatos['id']);
+    $('#name-user-edit').val(recuperaDatos['first_name']);
+    $('#last-name-user-edit').val(recuperaDatos['last_name']);
+    $('#email-user-edit').val(recuperaDatos['email']);
+    $('#privilege-user-edit').val(recuperaDatos['privilege']);
+
+    $('#form-user-edit').css('display','block');
+    $('#form-user').css('display','none');
+
+
+    alert("llegaste aqui");
+
+
+    if (recuperaDatos['img']!='null') {
+          $("#user-avatar-edit").fileinput('refresh',{
+          defaultPreviewContent: '<img src="'+urlcorta+'/'+recuperaDatos['img']+'" class="img-fluid">',
+          });
+          $("#user-avatar-edit").fileinput('clear');
+        }else{
+          $("#user-avatar-edit").fileinput('refresh',{
+          defaultPreviewContent: '<img src="assets/admin/images/default_avatar_male.jpg" alt="Your Avatar">',
+          });
+          $("#user-avatar-edit").fileinput('clear');
+        }
+
+
+
+
+
+    $('#table-users tr').css('background','white').css('color','black');
+    $(this).parents('tr').css('background','#FF5733').css('color','white');
+
+
+
+  });
+
+
+
+
+
+  $('#form-user').validate({
+    rules:{
+        'name-user':{required:true},
+        'last-name-user':{required:true},
+        'email-user':{required:true},
+        'password-user':{required:true},
+        'rep-password':{required:true,equalTo:'#password-user'},
+        'privilege-user':{required:true}
+    },
+    messages:{
+        'name-user':{required:'Por favor ingrese su nombre'},
+        'last-name-user':{required:'Por favor ingrese su apellido'},
+        'email-user':{required:'Por favor ingrese su email'},
+        'password-user':{required:'Por favor ingrese el password'},
+        'rep-password':{required:'Por favor repita el password'},
+        'privilege-user':{required:'Por favor ingrese el privilegio'}
+      },
+      submitHandler:function(form){
+
+        var storeUser = new FormData($('#form-user')[0]);
+
+        $.ajax({
+          url:'/user',
+          headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+          method:'POST',
+          data:storeUser,
+          processData:false,
+          contentType:false,
+        }).done(function(data){
+          $.Notification.notify('success', 'bottom right', 'Usuario Registrado correctamente');
+          table_user.ajax.reload();
+          $('#form-user')[0].reset();
+        }).fail(function(data){
+
+            if(data.status === 401){
+                        $(location).prop('pathname','/')
+                    }
+                    if(data.status === 422){
+                        $errors = data.responseJSON;
+                        $.each($errors,function(key,value){
+                            if(value['email-user']!=undefined){
+                                $.Notification.notify('error', 'bottom right', 'Este correo electronico ya esta en uso');
+                            }
+                        })
+                    }
+
+        });
+      }
+  });
+
+ $('#form-user-edit').validate({
+    rules:{
+        'name-user-edit':{required:true},
+        'last-name-user-edit':{required:true},
+        'email-user-edit':{required:true},
+        'password-user-edit':{required:true},
+        'rep-password-edit':{required:true,equalTo:'#password-user-edit'},
+        'privilege-user-edit':{required:true}
+    },
+    messages:{
+        'name-user-edit':{required:'Por favor ingrese su nombre'},
+        'last-name-user-edit':{required:'Por favor ingrese su apellido'},
+        'email-user-edit':{required:'Por favor ingrese su email'},
+        'password-user-edit':{required:'Por favor ingrese el password'},
+        'rep-password-edit':{required:'Por favor repita el password'},
+        'privilege-user-edit':{required:'Por favor ingrese el privilegio'}
+      },
+      submitHandler:function(form){
+
+        var updateUser = new FormData($('#form-user-edit')[0]);
+        updateUser.append('_method','PUT');
+        var iduser = $('#id-user').val();
+        $.ajax({
+          url:'/user/'+iduser,
+          headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+          method:'POST',
+          data:updateUser,
+          processData:false,
+          contentType:false,
+        }).done(function(data){
+
+          $.Notification.notify('success', 'bottom right', 'Usuario ha sido mofificado exitosamente');
+          table_user.ajax.reload();
+           $('#form-user-edit').css('display','none');
+           $('#form-user').css('display','block')
+
+        }).fail(function(data){
+
+              $.Notification.notify('error', 'bottom right', 'Ha ocurrido un error');
+
+            });
+      }
+  });
+
+
+
+
+
+$('#cancel-user').click(function(){
+  $('#form-user-edit').css('display','none');
+  $('#form-user').css('display','block')
+});
+
+
+
+
+});
+
+</script>
+<!--fin del script del users-->

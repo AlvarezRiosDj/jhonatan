@@ -1,0 +1,378 @@
+
+<style>
+	a[href="#img-video"]{
+		
+		display: none;
+	}
+
+	#cancel-video{
+		color: white;
+	}
+	#form-video-edit{
+		display: none;
+	}
+
+</style>
+<div class="card-box">
+
+<h4>video</h4>
+<form action="" id="form-video">
+<div class="row">
+	<div class="col-sm-6">
+		<div class="form-group">
+		    <label for="title-video">Titulo<span class="kv-reqd">*</span></label>
+		    <input type="text" id="title-video"-edit name="name" class="form-control" required>
+		</div>
+	</div>
+	<div class="col-sm-6">
+		<div class="form-group">
+		    <label for="description-video">Descripcion<span class="kv-reqd">*</span></label>
+		    <input type="text" id="description-video" name="description" class="form-control" required>
+		</div>
+	</div>
+
+</div>
+<div class="form-group">
+    <hr>
+    <div class="text-right">
+        <input type="text" name="tipo" value="video" hidden>
+        <button type="submit" id="btn-crear" class="btn btn-primary">Crear</button> 
+    </div>
+</div>
+</form>
+
+<form action="" id="form-video-edit">
+<div class="row">
+	<div class="col-sm-6">
+		<div class="form-group">
+		    <label for="title-video-edit">Titulo<span class="kv-reqd">*</span></label>
+		    <input type="text" id="title-video-edit"-edit name="name" class="form-control" required>
+		</div>
+	</div>
+	<div class="col-sm-6">
+		<div class="form-group">
+		    <label for="description-video-edit">Descripcion<span class="kv-reqd">*</span></label>
+		    <input type="text" id="description-video-edit" name="description" class="form-control" required>
+		</div>
+	</div>
+
+</div>
+<div class="form-group">
+    <hr>
+    <div class="text-right">
+    	<input type="text" id="id-video" hidden>
+        <button type="submit" id="btn-crear" class="btn btn-primary">Editar</button>
+ 		<a type="submit" id="cancel-video" class="btn btn-primary">Cancelar</a>
+    </div>
+</div>
+</form>
+<p>
+  <a class="btn btn-primary" data-toggle="collapse" href="#img-video" role="button" aria-expanded="false" aria-controls="collapseExample">
+   Seleccione videos
+  </a>
+	
+	
+</p>
+<div class="collapse" id="img-video">
+
+  <div class="card card-body">
+	<div class="file-loading">
+    <input id="video" name="video" type="file" multiple>
+	</div>
+  </div>
+</div>
+
+
+
+</div>
+
+
+ <div class="card-box table-responsive"> 
+ 	<table id="table-video" class="table table-bordered">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>Titulo</th>
+            <th>Descripcion</th>
+            <th>Fecha Creacion</th>
+            <th>Fecha Modificacion</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+
+
+<script>
+	var protocolo = window.location.protocol;
+    var dominio = window.location.host;
+    var urlcorta = protocolo+'//'+dominio;
+
+
+
+
+function video(id){
+	var videos = [];
+	var captions = [];
+	$.ajax({
+			url:'/video/show/'+id,
+			type:'GET',
+			async:false	
+		}).done(function(data){
+			$(data).each(function(key,value){				
+				videos.push(urlcorta+'/'+value['route']);
+				captions.push({type:'video',filetype:'video/mp4',caption: value['name'], size: value['size'], url: "/video/delete/"+value['id']});
+			});
+		});
+
+
+
+	$("#video").fileinput({
+        uploadUrl: "/video/"+id,
+        language:"es",
+        theme:"fa",
+        browseOnZoneClick: true,
+        maxFileCount: 5,
+        overwriteInitial: false,
+        initialPreview: videos,
+        initialPreviewAsData: true,
+       	initialPreviewFileType: 'video',
+        initialPreviewConfig: captions       
+    	}).on('fileunlock', function() {
+    		$('#video').fileinput('destroy'); 
+    		video(id);  
+		});
+
+
+
+
+		}
+
+
+
+
+</script>
+
+<script>
+	$(function(){
+
+	var table_video = $('#table-video').DataTable({
+        ajax:{
+            type:'GET',
+            url:'/video',
+            dataSrc:''
+        },
+        columns:[
+            {"data":"id",visible:false},
+            {"data" : "name"},
+            {"data" : "description"},
+            {"data" : "created_at"},
+            {"data" : "updated_at"},
+            {"defaultContent" : '<div class="btn-group" role="group">\
+<button id="btnGroupDrop1" type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">\
+Acciones</button>\
+<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">\
+<a class="dropdown-item" href="#editar">Editar</a>\
+<a class="dropdown-item" href="#eliminar">Eliminar</a>\
+</div>\
+</div>'}
+        ],
+      	"order":[[0,"desc"]]
+    });
+
+
+
+$('#table-video').on('click','a[href="#editar"]',function(){
+
+	$('#video').fileinput('destroy'); 
+	var recuperaDatos = table_video.row($(this).parents("tr")).data();
+	$('#id-video').val(recuperaDatos['id']);
+	$('#title-video-edit').val(recuperaDatos['name']);
+	$('#description-video-edit').val(recuperaDatos['description']);
+	$('#form-video-edit').css('display','block');
+	$('#form-video').css('display','none');
+	$('a[href="#img-video"]').css('display','inline');
+
+	$('#table-video tr').css('background','white').css('color','black');
+    $(this).parents('tr').css('background','#FF5733').css('color','white');
+	video($('#id-video').val());
+
+});
+
+
+
+
+
+$('#table-video').on('click','a[href="#eliminar"]',function(){
+	alert("hiciste click en eliminar");
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		$('#form-video').validate({
+			rules:{
+				'name':{required:true},
+				'description':{required:true}
+			},
+			messages:{
+				'name':{required:"Por favor complete el titulo"},
+				'description':{required:"Por favor complete la Descripcion"}
+			},
+			submitHandler:function(data){
+
+				var storeMultimedia = new FormData($('#form-video')[0]);
+				$.ajax({
+					url:'multimedia',
+					headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+					method:'POST',
+					data:storeMultimedia,
+					processData:false,
+					contentType:false
+				}).done(function(data){	
+
+					video(data);
+					table_video.ajax.reload();
+					$('a[href="#img-video"]').css('display','inline');
+					$.Notification.notify('success', 'bottom right', 'Seleccione las imagenes');
+					$('#btn-crear').css('display','none');
+					$('#title-video').attr('disabled','true');
+					$('#description-video').attr('disabled','true');
+
+				}).fail(function(data){
+					if (data.status === 401) {
+						$(location).prop('pathname','');
+					}
+					if (data.status === 422) {
+						$errors = data.responseJSON;
+						$.each($errors,function(key,value){
+							if ((value['title-video'])!=undefined) {
+								$.Notification.notify('error', 'bottom right', 'El titulo para este video ya esta en uso');
+							}
+						});
+					}
+				});
+			}
+		});
+
+
+
+
+
+
+
+		$('#form-video-edit').validate({
+			rules:{
+				'name':{required:true},
+				'description':{required:true}
+			},
+			messages:{
+				'name':{required:"Por favor ingrese el titulo"},
+				'description':{required:"Por favor ingrese la descripcion"}
+			},
+			submitHandler:function(form){
+				var updatevideo = new FormData($('#form-video-edit')[0]);
+				updatevideo.append('_method','PUT');
+				$.ajax({
+					url:'multimedia/'+$('#id-video').val(),
+					headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+					method:'POST',
+					data:updatevideo,
+					processData:false,
+					contentType:false
+				}).done(function(data){
+					table_video.ajax.reload();
+					$.Notification.notify('success', 'bottom right', 'Los datos fueron actualizados con exito');
+					$('#video').fileinput('destroy');
+					$('#form-video').css('display','block');
+					$('#form-video-edit').css('display','none');
+					$('a[href="#img-video"]').css('display','none');
+				}).fail(function(data){
+					if (data.status === 401) {
+						$(location).prop('pathname','');
+					}
+					if (data.status === 422) {
+						$errors = data.responseJSON;
+						$.each($errors,function(key,value){
+							if ((value['title-video-edit'])!=undefined) {
+								$.Notification.notify('error', 'bottom right', 'El titulo para este video ya esta en uso');
+							}
+						});
+					}
+				});
+			}
+		});
+
+
+
+
+
+	$('#cancel-video').click(function(){
+
+		$('#video').fileinput('destroy');
+		$('#form-video').css('display','block');
+		$('#form-video-edit').css('display','none');
+		$('a[href="#img-video"]').css('display','none');
+		$('#table-video tr').css('background','white').css('color','black');
+    	
+	});
+
+
+
+
+
+
+
+
+	});
+</script>

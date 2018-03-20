@@ -1,0 +1,382 @@
+
+
+<style>
+
+i{
+  cursor: pointer;
+}
+h3{
+  text-transform: uppercase;
+  color: black;
+  font-weight: bold;
+}
+
+.estilo-menus{
+  color:black;
+}
+
+#menus li{
+  color: black;
+}
+
+#menus i{
+  margin: 0px 10px;
+}
+
+</style>
+
+<div class="card-box">
+    <h4 class="header-title m-t-0 m-b-30">MENU</h4>
+
+
+</div>
+
+
+
+<div class="card-box" id="menus">
+
+
+  
+</div>
+
+
+
+
+<!-- Custom Modal -->
+<div id="modal-insertar" class="modal-demo">
+    <button type="button" class="close" onclick="Custombox.close();">
+        <span>&times;</span><span class="sr-only">Close</span>
+    </button>
+    <h4 class="custom-modal-title">Agregar</h4>
+    <div class="custom-modal-text">
+        <form action="" id="form-menu">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <input type="text" name="name" id="name-principal" class="form-control" placeholder="Nombre">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <input type="text" name="link" id="link-principal" class="form-control" placeholder="Link">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <input type="text" id="id-principal" name="principal" hidden>
+              <input type="text" id="id-lang" name="language_id" hidden>
+              <button class="btn btn-primary">Agregar</button>
+            </div>
+          </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- Custom Modal -->
+<div id="modal-edit" class="modal-demo">
+    <button type="button" class="close" onclick="Custombox.close();">
+        <span>&times;</span><span class="sr-only">Close</span>
+    </button>
+    <h4 class="custom-modal-title">Agregar</h4>
+    <div class="custom-modal-text">
+        <form action="" id="form-menu-edit">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <input type="text" name="name" id="name-principal-edit" class="form-control" placeholder="Nombre">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <input type="text" name="link" id="link-principal-edit" class="form-control" placeholder="Link">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <input type="text" id="id-menu-edit" hidden>
+              <input type="text" id="id-principal-edit" name="principal" hidden>
+              <input type="text" id="id-lang-edit" name="language_id" hidden>
+              <button class="btn btn-primary">Agregar</button>
+            </div>
+          </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+<script>
+
+
+$(function(){    
+
+
+function cargarMenu(){
+      $.ajax({
+      url:'lang',
+      method:'GET'
+    
+    }).done(function(data){
+      var data = data;
+      cadena='';
+
+      $(data).each(function(key,value){
+        cadena+='<div class="row">';
+        cadena+='<div class="col-sm-12">';
+        cadena+='<div class="card m-b-20 card-inverse text-white" style="background-color:#F5F5F5;border-color:#F5F5F5">';
+        cadena+='<div class="card-body">';
+        cadena+='<h3 class="card-title text-center">'+value['name']+'</h3>';
+        cadena+='<ul id="'+value['abbreviated']+'" name="'+value['id']+'">';
+        cadena+='</ul>';
+        cadena+='<i class="fa fa-plus" name="nuevo-agregar" style="color:green;font-size: 25px;"></i>';
+        cadena+='</div>';
+        cadena+='</div>';
+        cadena+='</div>';
+        cadena+='</div>';
+ 
+      });
+
+
+        $.ajax({
+          url:'menu',
+          method:'GET'
+        }).done(function(datos){
+
+
+          $(data).each(function(key,value){
+
+
+                if(datos!=''){
+
+                       contador=0;
+                      $(datos).each(function(clave,valor){
+                      
+                        if(value['id']==valor['language_id']){
+                        
+
+                            if(valor['principal']==0){
+                               $('#'+value['abbreviated']).append('<li name="'+valor['id']+'"><span class="estilo-menus">'+valor['name']+'</span><i class="fa fa-plus" name="agregar" style="color:green;"></i><i class="fa fa-pencil" name="editar" style="color:blue;"></i><i class="fa fa-times-circle" name="eliminar" style="color:red;"></i><ul id="'+valor['id']+'"></ul>');
+                            }
+
+                            if(valor['principal']!=0){
+
+                       
+
+                              $('ul#'+valor['principal']).append('<li name="'+valor['id']+'"><span class="estilo-menus">'+valor['name']+'</span><i class="fa fa-pencil" name="editar" style="color:blue;"></i><i class="fa fa-times-circle" name="eliminar" style="color:red;"></i></li><ul id="'+valor['id']+'"></ul>');
+                               
+                            }                           
+
+                        }
+
+                        
+                      });
+
+                }
+
+              
+
+                
+          });
+   
+
+            acciones();
+
+
+
+        });
+
+
+
+      $('#menus').html(cadena);
+
+    
+    }); 
+
+
+}
+
+
+cargarMenu();
+
+
+
+
+function acciones(){
+
+
+  $('i[name="nuevo-agregar"]').click(function(){
+
+      var id = $(this).prev('ul').attr('name');
+
+      $('#id-lang').val(id);
+      $('#id-principal').val('0');
+
+      Custombox.open({
+        target: '#modal-insertar',
+        effect: 'fadein'
+      });
+
+
+  });
+
+
+
+
+  $('i[name="agregar"]').click(function(){
+
+      var idLang = $(this).parents('ul').attr('name');
+      var id = $(this).parent('li').attr('name');
+
+      $('#id-lang').val(idLang);
+      $('#id-principal').val(id);
+
+      Custombox.open({
+        target: '#modal-insertar',
+        effect: 'fadein'
+      });
+    
+  });
+
+
+
+
+
+  $('i[name="editar"]').click(function(){
+
+    var id = $(this).parent('li').attr('name');
+      
+    $.ajax({
+      url:'menu/'+id,
+      method:'GET',      
+    }).done(function(data){
+        $(data).each(function(key,value){
+          $('#id-menu-edit').val(value['id']);
+          $('#id-lang-edit').val(value['language_id']);
+          $('#id-principal-edit').val(value['principal']);
+          $('#name-principal-edit').val(value['name']);
+          $('#link-principal-edit').val(value['link']);          
+          
+        });
+    });
+
+
+     Custombox.open({
+        target: '#modal-edit',
+        effect: 'fadein'
+      });
+
+  });
+
+
+
+
+
+  $('i[name="eliminar"]').click(function(){
+
+        var id = $(this).parent('li').attr('name');
+    
+        swal({
+            title: "Realmente desea eliminar?",
+            text: "Si elimina el elemento no podra recuperar!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Si, eliminar!",
+            closeOnConfirm: false
+          },
+          function(){
+            $.ajax({
+              url:'menu/'+id,
+              headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+              method:'DELETE'
+            }).done(function(data){
+              cargarMenu();
+              swal("Eliminado!", "El elemento ha sido eliminado satisfactoriamente", "success");
+            });
+            
+
+          });
+
+
+  });
+
+
+}
+
+
+
+$('#form-menu').validate({
+  rules:{
+    name:{required:true},
+    link:{required:true}
+  },
+  messages:{
+    name:{required:"Por favor complete este campo"},
+    link:{required:"Por favor ingrese el link"}
+  },
+  submitHandler:function(form){
+   
+   var storeMenu = new FormData($('#form-menu')[0]);
+
+    $.ajax({
+      url:'menu',
+      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+      method:'POST',
+      data:storeMenu,
+      processData:false,
+      contentType:false
+    }).done(function(data){
+
+      $.Notification.notify('success', 'bottom right', 'Ingresado correctamente');
+      
+      $('#form-menu')[0].reset();
+      cargarMenu();
+
+      Custombox.close();
+    });
+  }
+});
+
+$('#form-menu-edit').validate({
+  rules:{
+    name:{required:true},
+    link:{required:true}
+  },
+  messages:{
+    name:{required:"Por favor complete este campo"},
+    link:{required:"Por favor ingrese el link"}
+  },
+  submitHandler:function(form){
+    
+
+    var updateMenu = new FormData($('#form-menu-edit')[0]);
+    updateMenu.append('_method','PUT');
+    var idMenu = $('#id-menu-edit').val();
+
+    $.ajax({
+      url:'menu/'+idMenu,
+      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+      method:'POST',
+      data:updateMenu,
+      processData:false,
+      contentType:false
+    }).done(function(data){
+      $.Notification.notify('success', 'bottom right', 'Actualizado correctamente');
+      $('#form-menu-edit')[0].reset();
+      cargarMenu();
+      Custombox.close();
+    });
+    
+  }
+});
+
+
+
+
+  });
+</script>
+
