@@ -287,7 +287,6 @@ order: [[0,"desc"]]
     $('#form-user').css('display','none');
 
 
-    alert("llegaste aqui");
 
 
     if (recuperaDatos['img']!='null') {
@@ -401,7 +400,8 @@ order: [[0,"desc"]]
           $.Notification.notify('success', 'bottom right', 'Usuario ha sido mofificado exitosamente');
           table_user.ajax.reload();
            $('#form-user-edit').css('display','none');
-           $('#form-user').css('display','block')
+           $('#form-user').css('display','block');
+           $('#form-user-edit')[0].reset();
 
         }).fail(function(data){
 

@@ -45,13 +45,13 @@
            
               <div class="form-group">
                 <label for="name-lang">Idioma<span class="kv-reqd">*</span></label>
-                <input type="text" class="form-control" name="name-lang" id="name-lang" maxlength="50" required>           </div>
+                <input type="text" class="form-control" name="name-lang" id="name-lang" maxlength="50" required>    </div>
            
           </div>
         <div class="col-sm-4">
           <div class="form-group">
                 <label for="abbr-lang">Abreviación<span class="kv-reqd">*</span></label>
-                <input type="text" class="form-control" name="abbr-lang" id="abbr-lang" maxlength="5" required>
+                <input type="text" class="form-control" name="abbr-lang" id="abbr-lang" maxlength="20" required>
               </div>
         </div>
         <div class="col-sm-4">
@@ -99,7 +99,7 @@
       <div class="col-sm-4">
         <div class="form-group">
                 <label for="abbr-lang-edit">Abreviación<span class="kv-reqd">*</span></label>
-                <input type="text" class="form-control" name="abbr-lang-edit" id="abbr-lang-edit" maxlength="5" readonly required>
+                <input type="text" class="form-control" name="abbr-lang-edit" id="abbr-lang-edit" maxlength="20" readonly required>
               </div>
       </div>
       <div class="col-sm-4">
@@ -328,6 +328,8 @@ Acciones</button>\
             contentType:false
           }).done(function(data){
             $.Notification.notify('success', 'bottom right', 'El lenguaje se modifico correctamente');
+            $('#form-lang-edit').css('display','none');
+            $('#form-lang').css('display','block');
             table_lang.ajax.reload();
           });
       }

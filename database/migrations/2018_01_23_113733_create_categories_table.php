@@ -20,6 +20,7 @@ class CreateCategoriesTable extends Migration
             $table->string('img',255);
             $table->integer('categorie_principal');
             $table->string('description',500);
+            $table->string('slug',100)->unique();
             $table->timestamps();
 
             // Relations

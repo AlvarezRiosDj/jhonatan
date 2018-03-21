@@ -11,6 +11,7 @@ class Categorie extends Model
     	'name',
     	'img',
     	'categorie_principal',
-    	'description'
+    	'description',
+    	'slug'
     ];
 }

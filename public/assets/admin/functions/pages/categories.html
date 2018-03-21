@@ -40,7 +40,7 @@ i[id^='edit']{
     <!-- the avatar markup -->
     <form class="form form-vertical" id="form-categorie" action="/avatar_upload.php" method="post" enctype="multipart/form-data">
         <div class="row">
-            <div class="col-md-12 text-center">
+            <div class="col-sm-12 text-center">
                 <div class="kv-avatar">
                     <div class="file-loading">
                         <input id="input-img-categorie" name="input-img-categorie" type="file" required>
@@ -48,46 +48,71 @@ i[id^='edit']{
                 </div>
                 <div class="kv-avatar-hint"><small>Select file < 1500 KB</small></div>
             </div>
-            <div class="col-md-12 offset-md-4">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <label for="input-name-categorie">Titulo<span class="kv-reqd">*</span></label>
-                            <input type="text" id="input-name-categorie" name="input-name-categorie" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <label for="input-description-categorie">Descripcion<span class="kv-reqd">*</span></label>
-                            <textarea name="input-description-categorie" id="input-description-categorie" cols="30" rows="10" class='form-control' required></textarea>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div class="form-group">
-                            <label for="pwd">Idioma<span class="kv-reqd">*</span></label>
-                            <select name="input-language-categorie" id="input-language-categorie" class="form-control">
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div class="form-group">
-                            <label for="input-principal-categorie">Categoria Principal<span class="kv-reqd">*</span></label>
-                            <select name="input-principal-categorie" id="input-principal-categorie" class="form-control">
-                            </select>
-                        </div>
-                    </div>
-                </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
                 <div class="form-group">
+                    <label for="input-name-categorie">Titulo<span class="kv-reqd">*</span></label>
+                    <input type="text" name="input-name-categorie" id="input-name-categorie" class="form-control">
+                </div>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="input-description-categorie">Descripcion<span class="kv-reqd">*</span></label>
+                    <textarea name="input-description-categorie" id="input-description-categorie" cols="30" rows="10" class='form-control' required></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                 <div class="form-group">
+                    <label for="pwd">Idioma<span class="kv-reqd">*</span></label>
+                    <select name="input-language-categorie" id="input-language-categorie" class="form-control">
+                    </select>
+                </div>
+            </div>
+      
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="input-principal-categorie">Categoria Principal<span class="kv-reqd">*</span></label>
+                    <select name="input-principal-categorie" id="input-principal-categorie" class="form-control">
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="input-status-categorie">Estado</label>
+                    <select name="input-status-categorie" id="input-status-categorie" class="form-control">
+                        <option value="habilitado">habilitado</option>
+                        <option value="deshabilitado">deshabilitado</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-9">
+                <div class="form-group">
+                    <label for="input-slug-categorie">Slug<span class="kv-reqd">*</span> (url amigable)</label>
+                    <input type="text" name="input-slug-categorie" id="input-slug-categorie" class="form-control">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                 <div class="form-group">
                     <hr>
-                    <div class="text-right">
-                      
-                        <button type="submit" id="input-submit-categorie" class="btn btn-primary">Guardar</a>
-                    
+                    <div class="text-right">                      
+                        <button type="submit" id="input-submit-categorie" class="btn btn-primary">Guardar</button>                    
                     </div>
                 </div>
             </div>
         </div>
     </form>
+
+
+
+
     <form class="form form-vertical" id="form-categorie-edit" enctype="multipart/form-data">
     <div class="row">
         <div class="col-md-12 text-center">
@@ -98,35 +123,54 @@ i[id^='edit']{
             </div>
             <div class="kv-avatar-hint"><small>Select file < 1500 KB</small></div>
         </div>
-        <div class="col-md-12 offset-md-4">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="form-group">
-                        <label for="edit-name-categorie">Titulo<span class="kv-reqd">*</span></label>
-                        <input type="text" id="edit-name-categorie" name="edit-name-categorie" class="form-control" required>
-                    </div>
-                </div>
-                <div class="col-sm-12">
-                    <div class="form-group">
-                        <label for="edit-description-categorie">Descripcion<span class="kv-reqd">*</span></label>
-                        <textarea name="edit-description-categorie" id="edit-description-categorie" cols="30" rows="10" class='form-control' required></textarea>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
-                        <label for="pwd">Idioma<span class="kv-reqd">*</span></label>
-                        <select name="edit-language-categorie" id="edit-language-categorie" class="form-control" disabled>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <div class="form-group">
-                        <label for="edit-principal-categorie">Categoria Principal<span class="kv-reqd">*</span></label>
-                        <select name="edit-principal-categorie" id="edit-principal-categorie" class="form-control" disabled>
-                        </select>
-                    </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label for="edit-name-categorie">Titulo<span class="kv-reqd">*</span></label>
+                <input type="text" id="edit-name-categorie" name="edit-name-categorie" class="form-control" required>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label for="edit-description-categorie">Descripcion<span class="kv-reqd">*</span></label>
+                <textarea name="edit-description-categorie" id="edit-description-categorie" cols="30" rows="10" class='form-control' required></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label for="pwd">Idioma<span class="kv-reqd">*</span></label>
+                <select name="edit-language-categorie" id="edit-language-categorie" class="form-control" disabled>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label for="edit-principal-categorie">Categoria Principal<span class="kv-reqd">*</span></label>
+                <select name="edit-principal-categorie" id="edit-principal-categorie" class="form-control" disabled>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <label for="edit-status-categorie">Estado</label>
+            <select name="edit-status-categorie" id="edit-status-categorie" class="form-control">
+                <option value="habilitado">habilitado</option>
+                <option value="deshabilitado">deshabilitado</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-9">
+                <div class="form-group">
+                    <label for="edit-slug-categorie">Slug<span class="kv-reqd">*</span> (url amigable)</label>
+                    <input type="text" name="edit-slug-categorie" id="edit-slug-categorie" class="form-control">
                 </div>
             </div>
+        <div class="col-sm-3">
             <div class="form-group">
                 <hr>
                 <div class="text-right">
@@ -213,12 +257,16 @@ i[id^='edit']{
     method: 'GET',
     data:{id:id}
     }).done(function(data){
+
     for(datas in data.lang){
     idiomas+='<option value="'+data.lang[datas].id+'">'+data.lang[datas].name+'</option>';
     }
+
     for(ct in data.categorie){
     categorias+='<option value="'+data.categorie[ct].id+'">'+data.categorie[ct].name+'</option>';
     }
+
+
     for(info in data.categorie){
     if(data.categorie[info].categorie_principal==0){
     $('#basicTree ul#0').append('<li value="'+data.categorie[info].id+'">'+data.categorie[info].name+'&nbsp;&nbsp;&nbsp;<i id="edit'+data.categorie[info].id+'" class="fa fa-pencil"></i><ul id="'+data.categorie[info].id+'"></ul></li>');
@@ -227,15 +275,24 @@ i[id^='edit']{
     $('ul#'+data.categorie[info].categorie_principal).append('<li>'+data.categorie[info].name+'&nbsp;&nbsp;&nbsp;<i id="edit'+data.categorie[info].id+'" class="fa fa-pencil"></i><ul id="'+data.categorie[info].id+'"></ul></li>');
     }
     }
+
+
     if($('#input-language-categorie').val()==null){
     $('#input-language-categorie').html(idiomas);
     $('#edit-language-categorie').html(idiomas);
     }
+
+
     $('#input-principal-categorie').html('');
     $('#input-principal-categorie').html(categorias);
     $('#edit-principal-categorie').html(categorias);
+
+
     });
+
     recuperaCategoria();
+
+
     }
 
     
@@ -247,12 +304,14 @@ i[id^='edit']{
     rules:{
     'input-img-categorie':{required:true},
     'input-name-categorie':{required:true},
-    'input-description-categorie':{required:true}
+    'input-description-categorie':{required:true},
+    'input-slug-categorie':{required:true}
     },
     messages:{
     'input-img-categorie':{required:"Seleccione una imagen"},
     'input-name-categorie':{required:"El campo es requerido"},
     'input-description-categorie':{required:"El campo es requerido"},
+    'input-slug-categorie':{required:"Por favor ingrese la url amigable"}
     },
     submitHandler:function(form){
     var storeCategorie = new FormData($('#form-categorie')[0]);
@@ -268,6 +327,19 @@ i[id^='edit']{
     $('#form-categorie')[0].reset();
     recuperarIdiomaCategoria(1);
     recuperarIdiomaCategoria($('#input-language-categorie').val())
+    }).fail(function(data){
+        if(data.status == 401){
+            $(location).prop('pathname','');
+        }
+        if(data.status == 422){
+
+            $errors = data.responseJSON;
+            $.each($errors,function(key,value){
+                  if(value['input-slug-categorie']!=undefined){
+                        $.Notification.notify('error','bottom right','Este slug ya esta en uso');
+                    }
+            });
+        }
     });
     }
     });
@@ -276,11 +348,13 @@ i[id^='edit']{
     $('#form-categorie-edit').validate({
         rules:{
             'edit-name-categorie':{required:true},
-            'edit-description-categorie':{required:true}
+            'edit-description-categorie':{required:true},
+            'edit-slug-categorie':{required:true}
         },
         messages:{
             'edit-name-categorie':{required:"el titulo es necesario"},
-            'edit-description-categorie':{required:"la descripcion es necesaria"}
+            'edit-description-categorie':{required:"la descripcion es necesaria"},
+            'edit-slug-categorie':{required:"Por favor ingrese la url amigable"}
         },
         submitHandler:function(form){
             var update_categorie = new FormData($('#form-categorie-edit')[0]);
@@ -305,6 +379,20 @@ i[id^='edit']{
                 $('#form-categorie-edit').css('display','none');
                 $('#form-categorie').css('display','block');
 
+            }).fail(function(data){
+
+                if(data.status == 401){
+                    $(location).prop('pathname','');
+                }
+                if(data.status == 422){
+                    $errors = data.responseJSON;
+                    $.each($errors,function(key,value){
+                          if(value['edit-slug-categorie']!=undefined){
+                                $.Notification.notify('error','bottom right','Este slug ya esta en uso')
+                            }
+                    });
+                }
+              
             });
         }
     });
@@ -329,10 +417,10 @@ i[id^='edit']{
                 $("#edit-img-categorie").fileinput('refresh',{
                 defaultPreviewContent: '<img src="'+'/'+value.img+'" class="img-fluid">'});
                 $("#edit-img-categorie").fileinput('clear');
+                $('#edit-slug-categorie').val(value.slug);
                 
             });
         });
-
         
     });
     }
