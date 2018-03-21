@@ -48,5 +48,12 @@ Route::get('video/show/{id}','VideoController@showVideo');
 //Rutas Comentarios de los tours
 
 
-// Rutas del Front
-Route::view('tour', 'public.layouts.tour');
+// Rutas de Public
+
+Route::view('tour', 'public.tour');
+Route::view('categories', 'public.categories');
+Route::view('contact', 'public.contact');
+Route::view('about', 'public.about_us');
+Route::view('personal-info', 'public.payment.personal_info');
+Route::view('payment', 'public.payment.payment_info');
+Route::view('confirmation', 'public.payment.confirmation');
