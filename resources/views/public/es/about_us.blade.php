@@ -9,7 +9,7 @@
             <div class="titleTable">
               <div class="titleTableInner">
                 <div class="pageTitleInfo">
-                  <h1>about us</h1>
+                  <h1>Acerca de Nosotros</h1>
                   <div class="under-border"></div>
                 </div>
               </div>
@@ -115,7 +115,7 @@
         <div class="row">
           <div class="col-xs-12">
             <div class="sectionTitle">
-              <h2><span>our Team</span></h2>
+              <h2><span>Nuestro Equipo</span></h2>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
             </div>
           </div>

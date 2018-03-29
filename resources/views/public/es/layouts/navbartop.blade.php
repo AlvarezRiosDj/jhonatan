@@ -117,7 +117,7 @@
                 <a href="{{('/about')}}" class="dropdown-toggle">About</a>
               </li>
               <li class="dropdown singleDrop ">
-                <a href="{{('/contact')}}" class="dropdown-toggle">Contact</a>
+                <a href="{{('/contact')}}" class="dropdown-toggle">Contactenos</a>
               </li>
               <li class="dropdown searchBox">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="searchIcon"><i class="fa fa-search" aria-hidden="true"></i></span></a>

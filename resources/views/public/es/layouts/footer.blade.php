@@ -10,7 +10,7 @@
         </div>
         <div class="col-sm-3 col-xs-12">
           <div class="footerContent">
-            <h5>contact us</h5>
+            <h5>Contactenos</h5>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod.</p>
             <ul class="list-unstyled">
               <li><i class="fa fa-home" aria-hidden="true"></i>61 Park Street, Fifth Avenue, NY</li>
@@ -46,10 +46,10 @@
         </div>
         <div class="col-sm-3 col-xs-12">
           <div class="footerContent">
-            <h5>newsletter</h5>
+            <h5>Suscribete</h5>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do. </p>
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Enter your email" aria-describedby="basic-addon21">
+              <input type="text" class="form-control" placeholder="Ingrese su email" aria-describedby="basic-addon21">
               <span class="input-group-addon" id="basic-addon21"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></span>
             </div>
             <ul class="list-inline">

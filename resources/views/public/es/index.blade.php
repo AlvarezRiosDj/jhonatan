@@ -368,8 +368,8 @@
         <div class="row gridResize">
           <div class="col-sm-3 col-xs-12">
             <div class="sectionTitleDouble">
-              <p>Search</p>
-              <h2>your <span>tours</span></h2>
+              <p>Busca</p>
+              <h2>Tu <span>tours</span></h2>
             </div>
           </div>
           <div class="col-sm-7 col-xs-12">
@@ -413,7 +413,7 @@
             </div>
           </div>
           <div class="col-sm-2 col-xs-12">
-            <a href="#" class="btn btn-block buttonCustomPrimary">Search</a>
+            <a href="#" class="btn btn-block buttonCustomPrimary">Buscar</a>
           </div>
         </div>
       </div>
@@ -427,7 +427,7 @@
         <div class="row">
           <div class="col-xs-12">
             <div class="sectionTitle">
-              <h2><span>Our Packages</span></h2>
+              <h2><span>Nuestros Paquetes</span></h2>
               <p>Ut facilisis facilisis metus quis semper</p>
             </div>
           </div>
@@ -598,7 +598,7 @@
         <div class="row">
           <div class="col-xs-12">
             <div class="sectionTitle">
-              <h2><span class="lightBg">Our Top Deals</span></h2>
+              <h2><span class="lightBg">Nuestras Mejores Ofertas</span></h2>
               <p>Quisque lacus augue, blandit non est a, dictum malesuada odio.</p>
             </div>
           </div>
