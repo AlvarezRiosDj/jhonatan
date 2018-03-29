@@ -36,7 +36,19 @@ class TourController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return "llegaste a store de tour";
+
+        $this->validate($request,[
+
+                'input-img-tour'=>'required',
+                'input-title-tour'=>'required',
+                'input-price-tour'=>'required',
+                'input-short-description'=>'required',
+                'input-description-tour'=>'required',
+                'input-lang-tour'=>'required',
+                'input-categorie-tour'=>'required',
+                'input-status-tour'=>'required'
+        ]);
     }
 
     /**

@@ -112,19 +112,19 @@ i[id^='edit']{
 
 	<div class="card-box">
 	<div class="row">
-		<div class="col-sm-3">
+		<div class="col-sm-4">
 			<div class="form-group">
             <label for="input-lang-tour">Seleccione el  lenguaje</label>
            	<select name="input-lang-tour" id="input-lang-tour" class="form-control"></select>
           </div>
 		</div>
-		<div class="col-sm-3">
+		<div class="col-sm-4">
 			<div class="form-group">
             <label for="input-categorie-tour">Seleccione la categoria </label>
            	<select name="input-categorie-tour" id="input-categorie-tour" class="form-control"></select>
           </div>
 		</div>
-		<div class="col-sm-3">
+		<div class="col-sm-4">
 			<div class="form-group">
             <label for="input-status-tour">Estado</label>
            	<select name="input-status-tour" id="input-status-tour" class="form-control">
@@ -133,16 +133,23 @@ i[id^='edit']{
            	</select>
           </div>
 		</div>
-		<div class="col-sm-3">
-			<div class="form-group">
+	
+	</div>
+  <div class="row">
+    <div class="col-sm-8">
+      <label for="">Slug (es la url amigable)</label>
+      <input type="" name="input-slug-tour" class="form-control">
+    </div>
+    <div class="col-sm-4">
+      <div class="form-group">
             <hr>
             <div class="text-right">
               <button type="submit" class="btn btn-primary">Guardar</button>
-				
+        
             </div>
           </div>
-		</div>
-	</div>
+    </div>
+  </div>
 		
 	</div>
 
@@ -241,7 +248,7 @@ i[id^='edit']{
 	}
 
 
-  //llamaos a la funcio para recuperar los lenguajes
+  //llamaos a la funcion para recuperar los lenguajes
   recuperaLang();
 
 
@@ -260,6 +267,20 @@ i[id^='edit']{
 
 
 	function recuperaCategoria(idLang){
+      $.ajax({
+      url:'/categorie',
+      method:'GET',
+      data:{id:idLang}
+    }).done(function(data){
+      var categorias;
+        for(ct in data.categorie){
+          categorias+='<option value="'+data.categorie[ct].id+'">'+data.categorie[ct].name+'</option>';       
+        }
+
+        $('#input-categorie-tour').html(categorias);
+    }).fail(function(data){
+        alert("ha ocurrido un error al recuperar");
+    });
 		  
 	}
 
@@ -267,12 +288,38 @@ i[id^='edit']{
   //validamos en formulario antes de enviarlo
 
   $('#form-tour').validate({
+    rules:{
+      'input-img-tour':{required:true},
+      'input-title-tour':{required:true},
+      'input-price-tour':{required:true},
+      'input-short-description':{required:true},
+      'input-description-tour':{required:true},
+      'input-lang-tour':{required:true},
+      'input-categorie-tour':{required:true},
+      'input-status-tour':{required:true}
+    },
+    messages:{
+      'input-img-tour':{required:"Seleccione una imagen"},
+      'input-title-tour':{required:"Por favor ingrese el titulo"},
+      'input-price-tour':{required:"Por favor ingrese el precio"},
+      'input-short-description':{required:"Por favor ingrese una descripcion corta"},
+      'input-description-tour':{required:"Por favor ingrese la descripcion completa"},
+      'input-lang-tour':{required:"Por favor seleccione el lenguaje"},
+      'input-categorie-tour':{required:"Por favor seleccione la categoria"},
+      'input-status-tour':{required:"Por favor seleccione el estado"}
+    },
     submitHandler:function(form){
+      var storeTour = new FormData($('#form-tour')[0]);
         $.ajax({
           url:'turismo',
-          method:'GET'
+          headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+          method:'POST',
+          processData:false,
+          contentType:false
         }).done(function(data){
           alert(data);
+        }).fail(function(data){
+          alert("ha ocurrido un error");
         });
     }
   });

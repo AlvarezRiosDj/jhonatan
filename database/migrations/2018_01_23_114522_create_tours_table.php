@@ -17,7 +17,6 @@ class CreateToursTable extends Migration
             $table->increments('id');
             $table->integer('categorie_id')->unsigned();
             $table->string('meta_description',255)->nullable();
-            $table->integer('country_id')->unsigned();
             $table->string('meta_keywords',255)->nullable();
             $table->string('name', 128);
             $table->string('slug', 128)->unique();
@@ -36,7 +35,7 @@ class CreateToursTable extends Migration
 
             //Relations
             $table->foreign('categorie_id')->references('id')->on('categories');
-            $table->foreign('country_id')->references('id')->on('countries');
+          
 
 
         });
