@@ -10,6 +10,6 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-/public/assets/public/
+/public/assets/public/content
 /public/assets/admin/images/
 .env

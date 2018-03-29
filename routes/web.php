@@ -12,7 +12,7 @@
 */
 
 
-Route::view('','public.index');
+Route::view('','public.es.index');
 Route::view('admin','admin.index');
 Route::view('login','admin.login');
 
@@ -50,10 +50,12 @@ Route::get('video/show/{id}','VideoController@showVideo');
 
 // Rutas de Public
 
-Route::view('tour', 'public.tour');
-Route::view('categories', 'public.categories');
-Route::view('contact', 'public.contact');
-Route::view('about', 'public.about_us');
-Route::view('personal-info', 'public.payment.personal_info');
-Route::view('payment', 'public.payment.payment_info');
-Route::view('confirmation', 'public.payment.confirmation');
+Route::view('tour', 'public.es.tour');
+Route::view('categories', 'public.es.categories');
+Route::view('contact', 'public.es.contact');
+Route::view('about', 'public.es.about_us');
+Route::view('personal-info', 'public.es.payment.personal_info');
+Route::view('payment', 'public.es.payment.payment_info');
+Route::view('confirmation', 'public.es.payment.confirmation');
+
+// Fin de las rutas publicas
