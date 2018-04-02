@@ -10,11 +10,7 @@
                                         class="fa fa-dashboard"></i><span> Dashboard </span></a>
                             </li>
 
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" id="page_country" class="waves-effect waves-primary">
-                                    <i class="fa fa-users"></i> <span> Paises</span>
-                                </a>
-                            </li>
+                      
 
                             <li class="has_sub">
                                 <a href="javascript:void(0);" id="page_users" class="waves-effect waves-primary">

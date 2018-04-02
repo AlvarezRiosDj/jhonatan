@@ -19,6 +19,7 @@ class CreateToursTable extends Migration
             $table->string('meta_description',255)->nullable();
             $table->string('meta_keywords',255)->nullable();
             $table->string('name', 128);
+            $table->string('img',1000);
             $table->string('slug', 128)->unique();
             $table->string('description_short',50)->nullable();
             $table->string('description_complete',500)->nullable();
@@ -27,6 +28,7 @@ class CreateToursTable extends Migration
             $table->string('map',255)->nullable();
             $table->string('status',20)->nullable();
             $table->float('price',8,2)->nullable();
+            $table->integer('slider')->nullable();
             $table->float('offer',8,2)->nullable();
             $table->date('start_offer')->nullable();
             $table->date('end_offer')->nullable();

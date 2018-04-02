@@ -17,7 +17,6 @@ Route::view('admin','admin.index');
 Route::view('login','admin.login');
 
 Route::resource('user','UserController');
-Route::resource('country','CountryController');
 Route::resource('lang','LanguageController');
 Route::resource('categorie','CategorieController');
 Route::resource('multimedia','MultimediaController');

@@ -13,9 +13,6 @@ var urlActual=protocolo+'//'+dominio+'/assets/admin/functions/pages/';
 		cargarContent('dashboard.html');
 	});
 
-	$('#page_country').click(function(){
-		cargarContent('country.html');
-	});
 
 	$('#page_users').click(function(){
 		cargarContent('users.html');

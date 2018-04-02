@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Tour;
 use App\Categorie;
 use Illuminate\Http\Request;
@@ -15,7 +16,9 @@ class TourController extends Controller
      */
     public function index()
     {
-        return "llegaste a index de tour";
+        
+        $tour = Tour::All();
+        return response()->json($tour->toArray());
     }
 
     /**
@@ -36,7 +39,7 @@ class TourController extends Controller
      */
     public function store(Request $request)
     {
-        return "llegaste a store de tour";
+  
 
         $this->validate($request,[
 
@@ -45,10 +48,33 @@ class TourController extends Controller
                 'input-price-tour'=>'required',
                 'input-short-description'=>'required',
                 'input-description-tour'=>'required',
-                'input-lang-tour'=>'required',
                 'input-categorie-tour'=>'required',
-                'input-status-tour'=>'required'
+                'input-status-tour'=>'required',
+                'input-slug-tour'=>'required'
         ]);
+
+$abbrLanguage = DB::table('languages')->where('id',$request['input-lang-tour'])->value('abbreviated');
+                $file = $request->file('input-img-tour'); //envia la ruta del archivo en el cliente
+                $extension = $file->getClientOriginalExtension(); //envia la extension del archivo
+                $fileName = time() . '.' . $extension;
+                $file->move(public_path('assets/public/content/lang/'.$abbrLanguage.'/tour'),$fileName);
+                $ruta = 'assets/public/content/lang/'.$abbrLanguage.'/tour'.$fileName;
+
+        Tour::create([
+            'img'=>$ruta,
+            'categorie_id'=>$request['input-categorie-tour'],
+            'meta_description'=>$request['input-meta-description-tour'],
+            'meta_keywords'=>$request['input-meta-keywords-tour'],
+            'name'=>$request['input-title-tour'],
+            'price'=>$request['input-price-tour'],
+            'slider'=>$request['input-slider-tour'],
+            'slug'=>$request['input-slug-tour'],
+            'description_short'=>$request['input-short-description'],
+            'description_complete'=>$request['input-description-tour'],
+            'status'=>$request['input-status-tour']
+            ]);
+
+
     }
 
     /**
@@ -57,9 +83,10 @@ class TourController extends Controller
      * @param  \App\Tour  $tour
      * @return \Illuminate\Http\Response
      */
-    public function show(Tour $tour)
+    public function show($tour)
     {
-        //
+        $recuperando = Tour::where('id',$tour)->get();
+        return response()->json($recuperando->toArray());
     }
 
     /**

@@ -396,17 +396,13 @@ order: [[0,"desc"]]
           processData:false,
           contentType:false,
         }).done(function(data){
-
           $.Notification.notify('success', 'bottom right', 'Usuario ha sido mofificado exitosamente');
           table_user.ajax.reload();
            $('#form-user-edit').css('display','none');
            $('#form-user').css('display','block');
            $('#form-user-edit')[0].reset();
-
         }).fail(function(data){
-
               $.Notification.notify('error', 'bottom right', 'Ha ocurrido un error');
-
             });
       }
   });

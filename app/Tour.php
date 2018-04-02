@@ -8,11 +8,11 @@ class Tour extends Model
 {
     protected $fillable = [
     	'categorie_id',
-    	'meta_description',
-    	'country_id',
+    	'meta_description',    
     	'meta_keywords',
     	'name',
     	'slug',
+        'img',
     	'description_short',
     	'description_complete',
     	'cant_person',
@@ -20,6 +20,7 @@ class Tour extends Model
     	'map',
     	'status',
     	'price',
+        'slider',
     	'offer',
     	'start_offer',
     	'end_offert',
