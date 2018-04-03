@@ -18,17 +18,23 @@ var urlActual=protocolo+'//'+dominio+'/assets/admin/functions/pages/';
 		cargarContent('users.html');
 	});
 
-	$('#page_tours').click(function(){
-		cargarContent('tours.html');
+	$('#page_languages').click(function(){
+		cargarContent('languages.html');
 	});
 
 	$('#page_categories').click(function(){
 		cargarContent('categories.html');
 	});
 
-	$('#page_languages').click(function(){
-		cargarContent('languages.html');
+	$('#page_tours').click(function(){
+		cargarContent('tours.html');
 	});
+
+	$('#page_itinerary').click(function(){
+		cargarContent('itinerary.html');
+	});
+
+	
 
 	$('#page_img').click(function(){
 		cargarContent('images.html');

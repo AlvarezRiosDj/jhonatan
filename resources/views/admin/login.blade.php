@@ -28,7 +28,7 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
-				{!! Form::open(['url' => 'foo/bar','class'=>'login100-form validate-form']) !!}
+				{!! Form::open(['url' => 'login','method'=>'post','class'=>'login100-form validate-form']) !!}
 			
 					<span class="login100-form-title p-b-55">
 						Login
@@ -43,12 +43,20 @@
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
-						{!!Form::password('pass',['class'=>'input100','placeholder'=>'Password'])!!}						
+						{!!Form::password('password',['class'=>'input100','placeholder'=>'Password'])!!}						
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<span class="lnr lnr-lock"></span>
 						</span>
 					</div>
+					@if(session('status'))
+					<div class="alert alert-danger alert-dismissible fade show" role="alert">
+					  	{!! session('status')!!}
+					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					    <span aria-hidden="true">&times;</span>
+					  </button>
+					</div>
+					@endif()
 
 					<div class="contact100-form-checkbox m-l-4">
 						{!!Form::checkbox('remember-me', 'value',null,['class'=>'input-checkbox100','id'=>'ckb1'])!!}

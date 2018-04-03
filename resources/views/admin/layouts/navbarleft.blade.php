@@ -18,8 +18,8 @@
                                 </a>
                             </li>
                             <li class="has_sub">
-                                <a href="javascript:void(0);" id="page_tours" class="waves-effect waves-primary">
-                                    <i class="fa fa-road"></i> <span> Tours</span>
+                                <a href="javascript:void(0);" id="page_languages" class="waves-effect waves-primary">
+                                    <i class="fa fa-language "></i> <span> Idiomas</span>
                                 </a>
                             </li>
                             <li class="has_sub">
@@ -28,10 +28,15 @@
                                 </a>
                             </li>
                             <li class="has_sub">
-                                <a href="javascript:void(0);" id="page_languages" class="waves-effect waves-primary">
-                                    <i class="fa fa-language "></i> <span> Idiomas</span>
+                                <a href="javascript:void(0);" id="page_tours" class="waves-effect waves-primary">
+                                    <i class="fa fa-road"></i> <span> Tours</span>
                                 </a>
                             </li>
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" id="page_itinerary" class="waves-effect waves-primary">
+                                    <i class="fa fa-road"></i> <span> Itinerario</span>
+                                </a>
+                            </li>                            
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect waves-primary"><i
                                     class="ti-light-bulb"></i><span> Multimedia </span> <span class="menu-arrow"></span> </a>

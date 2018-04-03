@@ -13,9 +13,11 @@
 
 
 Route::view('','public.es.index');
-Route::view('admin','admin.index');
-Route::view('login','admin.login');
+Route::view('admin','admin.index')->middleware('auth');;
 
+
+
+Route::resource('login','LoginController');
 Route::resource('user','UserController');
 Route::resource('lang','LanguageController');
 Route::resource('categorie','CategorieController');

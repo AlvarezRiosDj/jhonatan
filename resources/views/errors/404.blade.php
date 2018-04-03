@@ -50,8 +50,8 @@
                             <h6>Pagina no encontrada</h6>
                             <div class="buttons-con">
                                 <div class="action-link-wrap">
-                                    <a onclick="history.back(-1)" href="" class="btn btn-custom btn-primary waves-effect waves-light m-t-20">Regresar Atras</a>
-                                    <a href="" class="btn btn-custom btn-primary waves-effect waves-light m-t-20">Ir a la Pagina Principal</a>
+                                    <a href="{{ URL::previous() }}" class="btn btn-custom btn-primary waves-effect waves-light m-t-20">Regresar Atras</a>
+                                    <a href="{{('/')}}" class="btn btn-custom btn-primary waves-effect waves-light m-t-20">Ir a la Pagina Principal</a>
                                 </div>
                             </div>
                         </div>

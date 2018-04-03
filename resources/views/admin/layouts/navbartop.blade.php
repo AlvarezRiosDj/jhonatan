@@ -70,29 +70,15 @@
                             <div class="dropdown-menu dropdown-menu-right profile-dropdown " aria-labelledby="Preview">
                                 <!-- item-->
                                 <div class="dropdown-item noti-title">
-                                    <h5 class="text-overflow"><small>Welcome ! John</small> </h5>
+                                    <h5 class="text-overflow"><small>Bienvenido! {!! Auth::user()->first_name !!}</small> </h5>
                                 </div>
 
                                 <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="mdi mdi-account-star-variant"></i> <span>Profile</span>
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="mdi mdi-settings"></i> <span>Settings</span>
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="mdi mdi-lock-open"></i> <span>Lock Screen</span>
-                                </a>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                {!!Form::open(['url'=>'login/1','method'=>'delete'])!!}
+                                <button class="dropdown-item notify-item">
                                     <i class="mdi mdi-logout"></i> <span>Logout</span>
-                                </a>
-
+                                </button>
+                                {!!Form::close()!!}
                             </div>
                         </li>
 

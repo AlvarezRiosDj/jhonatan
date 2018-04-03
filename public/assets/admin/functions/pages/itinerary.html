@@ -1,0 +1,204 @@
+
+<div class="card-box">
+<form class="form form-vertical" id="form-user" enctype="multipart/form-data">
+   <div class="row">
+     <div class="col-sm-6">
+       <div class="form-group">
+         <label for="">Title</label>
+         <input type="text" class="form-control">
+       </div>
+     </div>
+     <div class="col-sm-6">
+       <div class="form-group">
+         <label for="">Seleccione el Tour</label>
+         <select name="" id="" class="form-control"></select>
+       </div>
+     </div>
+   </div>
+   <div class="row">
+     <div class="col-sm-12">
+       <div class="form-group">
+            <hr>
+            <div class="text-right">
+              <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+          </div>
+     </div>
+   </div>
+</form>
+
+
+
+        <div class="tabs-vertical-env">
+            <ul class="nav tabs-vertical">
+                <li class="nav-item">
+                    <a href="#v-home" class="nav-link" data-toggle="tab" aria-expanded="false">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#v-profile" class="nav-link active" data-toggle="tab" aria-expanded="true">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#v-messages" class="nav-link" data-toggle="tab" aria-expanded="false">Messages</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#v-settings" class="nav-link" data-toggle="tab" aria-expanded="false">Settings</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane" id="v-home">
+                    <form action="">
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <div class="form-group">
+                              <label for="">Titulo</label>
+                              <input type="text" class="form-control">
+                            </div>
+                          </div>
+                          <div class="col-sm-12">
+                            <div class="form-group">
+                              <label for="">Descripcion</label>
+                              <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                </div>
+                <div class="tab-pane active" id="v-profile">
+                    <form action="">
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <div class="form-group">
+                              <label for="">Titulo</label>
+                              <input type="text" class="form-control">
+                            </div>
+                          </div>
+                          <div class="col-sm-12">
+                            <div class="form-group">
+                              <label for="">Descripcion</label>
+                              <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                </div>
+                <div class="tab-pane" id="v-messages">
+                    <form action="">
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <div class="form-group">
+                              <label for="">Titulo</label>
+                              <input type="text" class="form-control">
+                            </div>
+                          </div>
+                          <div class="col-sm-12">
+                            <div class="form-group">
+                              <label for="">Descripcion</label>
+                              <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                </div>
+
+
+
+                <div class="tab-pane" id="v-settings">
+                    <form action="">
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <div class="form-group">
+                              <label for="">Titulo</label>
+                              <input type="text" class="form-control">
+                            </div>
+                          </div>
+                          <div class="col-sm-12">
+                            <div class="form-group">
+                              <label for="">Descripcion</label>
+                              <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="card-box">
+	<table id="table-itinerary" class="table table-bordered">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>Nombre</th>
+      <th>Apellidos</th>
+      <th>Email</th>
+      <th>Privilegio</th>
+      <th>Modificacion</th>
+      <th>Acciones</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</div>
+
+<script>
+  $(function(){
+    $('#table-itinerary').DataTable();
+
+
+    function generarForm(){
+      var cadena='',tab;
+      tab+='<li class="nav-item">';
+      tab+='<a href="#v-settings" class="nav-link" data-toggle="tab" aria-expanded="false">Settings</a>';
+      tab+='</li>';
+
+
+      contenido+='<div class="tab-pane" id="v-settings">';
+      contenido+='<form action="">';
+      contenido+='<div class="row">';
+      contenido+='<div class="col-sm-12">';
+      contenido+='<div class="form-group">';
+      contenido+='<label for="">Titulo</label>';
+      contenido+='<input type="text" class="form-control">';
+      contenido+='</div>';
+      contenido+='</div>';
+      contenido+='<div class="col-sm-12">';
+      contenido+='<div class="form-group">';
+      contenido+='<label for="">Descripcion</label>';
+      contenido+='<textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>';
+      contenido+='</div>';
+      contenido+='</div>';
+      contenido+='</div>';
+      contenido+='</form>';
+      contenido+='</div>';
+    }
+
+
+  });
+</script>
