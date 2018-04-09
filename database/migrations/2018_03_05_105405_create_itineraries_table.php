@@ -13,15 +13,14 @@ class CreateItinerariesTable extends Migration
      */
     public function up()
     {
-        Schema::create('itineraries', function (Blueprint $table) {
+        Schema::create('itinerary', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('tour_id')->unsigned();
-            $table->string('day', 255);
-            $table->string('description', 255);
+            $table->foreign('tour_id')->references('id')->on('tours');       
+            $table->string('name',255);
             $table->timestamps();
 
-            // Relations
-            $table->foreign('tour_id')->references('id')->on('tours');
+           
         });
     }
 

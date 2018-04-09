@@ -1,17 +1,32 @@
 
+<link href="assets/admin/plugins/summernote/summernote-bs4.css" rel="stylesheet" />
+<style>
+  #contenedor-day{
+    display: none;
+  }
+
+  #cancel-edit{
+    color: white;
+  }
+  #form-itinerary-edit{
+    display: none;
+  }
+</style>
 <div class="card-box">
-<form class="form form-vertical" id="form-user" enctype="multipart/form-data">
+<form class="form form-vertical" id="form-itinerary" enctype="multipart/form-data">
    <div class="row">
      <div class="col-sm-6">
        <div class="form-group">
          <label for="">Title</label>
-         <input type="text" class="form-control">
+         <input type="text" name="title-itinerary" id="title-itinerary" class="form-control">
        </div>
      </div>
      <div class="col-sm-6">
        <div class="form-group">
          <label for="">Seleccione el Tour</label>
-         <select name="" id="" class="form-control"></select>
+         <select name="tour-itinerary" id="tour-itinerary" class="form-control">
+           <option value="1">tour1</option>
+         </select>
        </div>
      </div>
    </div>
@@ -28,108 +43,57 @@
 </form>
 
 
-
-        <div class="tabs-vertical-env">
-            <ul class="nav tabs-vertical">
-                <li class="nav-item">
-                    <a href="#v-home" class="nav-link" data-toggle="tab" aria-expanded="false">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#v-profile" class="nav-link active" data-toggle="tab" aria-expanded="true">Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#v-messages" class="nav-link" data-toggle="tab" aria-expanded="false">Messages</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#v-settings" class="nav-link" data-toggle="tab" aria-expanded="false">Settings</a>
-                </li>
-            </ul>
-
-            <div class="tab-content">
-                <div class="tab-pane" id="v-home">
-                    <form action="">
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <div class="form-group">
-                              <label for="">Titulo</label>
-                              <input type="text" class="form-control">
-                            </div>
-                          </div>
-                          <div class="col-sm-12">
-                            <div class="form-group">
-                              <label for="">Descripcion</label>
-                              <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
-                            </div>
-                          </div>
-                        </div>
-                      </form>
-                </div>
-                <div class="tab-pane active" id="v-profile">
-                    <form action="">
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <div class="form-group">
-                              <label for="">Titulo</label>
-                              <input type="text" class="form-control">
-                            </div>
-                          </div>
-                          <div class="col-sm-12">
-                            <div class="form-group">
-                              <label for="">Descripcion</label>
-                              <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
-                            </div>
-                          </div>
-                        </div>
-                      </form>
-                </div>
-                <div class="tab-pane" id="v-messages">
-                    <form action="">
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <div class="form-group">
-                              <label for="">Titulo</label>
-                              <input type="text" class="form-control">
-                            </div>
-                          </div>
-                          <div class="col-sm-12">
-                            <div class="form-group">
-                              <label for="">Descripcion</label>
-                              <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
-                            </div>
-                          </div>
-                        </div>
-                      </form>
-                </div>
-
-
-
-                <div class="tab-pane" id="v-settings">
-                    <form action="">
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <div class="form-group">
-                              <label for="">Titulo</label>
-                              <input type="text" class="form-control">
-                            </div>
-                          </div>
-                          <div class="col-sm-12">
-                            <div class="form-group">
-                              <label for="">Descripcion</label>
-                              <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
-                            </div>
-                          </div>
-                        </div>
-                      </form>
-                </div>
-
-
-
-
+<form class="form form-vertical" id="form-itinerary-edit" enctype="multipart/form-data">
+   <div class="row">
+     <div class="col-sm-6">
+       <div class="form-group">
+         <label for="">Title</label>
+         <input type="text" name="title-itinerary-edit" id="title-itinerary-edit" class="form-control">
+       </div>
+     </div>
+     <div class="col-sm-6">
+       <div class="form-group">
+         <label for="">Seleccione el Tour</label>
+         <select name="tour-itinerary-edit" id="tour-itinerary-edit" class="form-control">
+           <option value="1">tour1</option>
+         </select>
+       </div>
+     </div>
+   </div>
+   <div class="row">
+     <div class="col-sm-12">
+       <div class="form-group">
+            <hr>
+            <div class="text-right">
+              <input type="text" id="idItinerario" hidden>
+              <button type="submit" class="btn btn-primary">Guardar</button>
+              <a type="submit" class="btn btn-primary" id="cancel-edit">Cancelar</a>
             </div>
-        </div>
+          </div>
+     </div>
+   </div>
+</form>
 
 
 
+<div class="row" id="contenedor-day">
+  <div class="col-sm-12">
+    <button class="btn btn-primary" id="agregrar-itinerary">Agregar Dia</button>
+  </div>
+  <div class="col-sm-12">
+    <br>
+  </div>
+  <div class="col-sm-12">
+        <div class="tabs-vertical-env">
+          <ul class="nav tabs-vertical" id="tabs-vertical">
+
+          </ul>
+
+          <div class="tab-content" id="tab-content">
+           
+          </div>
+      </div>
+  </div>
 </div>
 
 
@@ -139,25 +103,20 @@
 
 
 
-
-
-
-
+</div>
 
 
 
 
 
 <div class="card-box">
-	<table id="table-itinerary" class="table table-bordered">
+  <table id="table-itinerary" class="table table-bordered">
   <thead>
     <tr>
       <th>id</th>
-      <th>Nombre</th>
-      <th>Apellidos</th>
-      <th>Email</th>
-      <th>Privilegio</th>
-      <th>Modificacion</th>
+      <th>Title</th>
+      <th>Tour</th>
+      <th>Fecha Creacion</th>
       <th>Acciones</th>
 
     </tr>
@@ -167,37 +126,498 @@
 </table>
 </div>
 
+
+<!--form summernote-->
+<script src="assets/admin/plugins/summernote/summernote-bs4.min.js"></script>
+
+
+ <script>
+    jQuery(document).ready(function(){
+
+        $('.summernote').summernote({
+            height: 350,                 // set editor height
+            minHeight: null,             // set minimum height of editor
+            maxHeight: null,             // set maximum height of editor
+            focus: false                 // set focus to editable area after initializing summernote
+        });
+
+
+    });
+</script>
+
+
+
+
+
 <script>
   $(function(){
-    $('#table-itinerary').DataTable();
+
+    var idCategorie;
+
+    $.ajax({
+      url:'turismo',
+      method:'GET'
+    }).done(function(data){
+      var cadena ='';
+      $(data).each(function(key,value){
+        cadena+='<option value="'+value.id+'">'+value.name+'</option>';
+
+      });
+      $('#tour-itinerary').html(cadena);
+      $('#tour-itinerary-edit').html(cadena);
+    }).fail(function(data){
+      alert("ha ocurrido un error");
+    });
 
 
-    function generarForm(){
-      var cadena='',tab;
+
+        var table_itinerary = $('#table-itinerary').DataTable({
+        ajax:{
+            type:'GET',
+            url:'/itinerary',
+            dataSrc:''
+        },
+        columns:[
+            {"data":"id",visible:false},
+            {"data" : "name"},
+            {"data" : "tour_id"},
+            {"data" : "created_at"},
+            {"defaultContent" : '<div class="btn-group" role="group">\
+<button id="btnGroupDrop1" type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">\
+Acciones</button>\
+<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">\
+<a class="dropdown-item" href="#editar">Editar</a>\
+<a class="dropdown-item" href="#eliminar">Eliminar</a>\
+</div>\
+</div>'}
+        ]
+    });
+
+var cadena = 'asfsanasfsa\n asfa  \t asfasf \\ asdas';
+
+
+
+$('#table-itinerary').on('click','a[href="#editar"]',function(){
+    var recuperaDatos = table_itinerary.row($(this).parents("tr")).data();
+
+
+
+
+      $('#form-itinerary').css('display','none');
+      $('#form-itinerary-edit').css('display','block');
+
+
+    $('#table-itinerary tr').css('background','white').css('color','black');
+    $(this).parents('tr').css('background','#FF5733').css('color','white');
+    $('#tabs-vertical .nav-item:last-child a span').text('');
+    $('#tabs-vertical').html('');
+    $('#tab-content').html('');
+
+    $.ajax({
+      url:'itinerary/'+recuperaDatos['id'],
+      method:'GET'
+    }).done(function(data){
+
+      $('#idItinerario').val(data.itinerario.id);
+      $('#title-itinerary-edit').val(data.itinerario.name);
+      $('#tour-itinerary-edit').val(data.itinerario.tour_id);
+
+    }).fail(function(data){
+       $.Notification.notify('error', 'bottom right', 'Ha ocurrido un error');
+    });
+
+
+
+
+
+    recuperarDias(recuperaDatos['id']);
+
+
+});
+
+
+
+$('#table-itinerary').on('click','a[href="#eliminar"]',function(){
+
+          var recuperaDatos = table_itinerary.row($(this).parents("tr")).data();
+                swal({
+                  title: "Esta seguro que desea eliminar?",
+                  text: "una vez que elimine ya no podra recuperar!",
+                  type: "warning",
+                  showCancelButton: true,
+                  confirmButtonClass: "btn-danger",
+                  confirmButtonText: "Si, Eliminar!",
+                  closeOnConfirm: false
+                },
+        function(){
+
+            $.ajax({
+              url:'itinerary/'+recuperaDatos['id'],
+              headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+              method:'DELETE'
+            }).done(function(data){
+
+              $('#title-itinerary').removeAttr('disabled');
+              $('#tour-itinerary').removeAttr('disabled');
+              $('#form-itinerary')[0].reset();
+              $('#form-itinerary-edit')[0].reset();
+              $('#contenedor-day').css('display','none');
+              $('#tabs-vertical .nav-item:last-child a span').text('');
+              $('#tabs-vertical').html('');
+              $('#tab-content').html('');
+              table_itinerary.ajax.reload();
+               swal("Eliminado!", "ha sido eliminado con exito", "success");
+            }).fail(function(data){
+                alert("ha ocurrido un error");
+            });
+
+
+         
+        });
+
+});
+
+
+
+
+
+    function generarForm(idCategorie,dia){
+
+      var contenido='',
+          tab='',
+          idDia;
+      
+        $.ajax({
+        url:'day',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        method:'POST',
+        async:false,
+        data:{itinerary_id:idCategorie,title:'vacio',day:dia,description:'vacio'}
+      }).done(function(data){
+          idDia=data;
+      }).fail(function(data){
+          alert("ha ocurrido un error");
+      });
+
+    
       tab+='<li class="nav-item">';
-      tab+='<a href="#v-settings" class="nav-link" data-toggle="tab" aria-expanded="false">Settings</a>';
+      tab+='<a href="#dia'+idDia+'" class="nav-link" data-toggle="tab" aria-expanded="false">Dia <span name="nrodia">'+dia+'</span></a>';
       tab+='</li>';
 
 
-      contenido+='<div class="tab-pane" id="v-settings">';
-      contenido+='<form action="">';
+      contenido+='<div class="tab-pane" id="dia'+idDia+'">';
+      contenido+='<form id="form-dia'+idDia+'">';
       contenido+='<div class="row">';
       contenido+='<div class="col-sm-12">';
       contenido+='<div class="form-group">';
       contenido+='<label for="">Titulo</label>';
-      contenido+='<input type="text" class="form-control">';
+      contenido+='<input type="text" name="title" class="form-control">';
       contenido+='</div>';
       contenido+='</div>';
       contenido+='<div class="col-sm-12">';
       contenido+='<div class="form-group">';
       contenido+='<label for="">Descripcion</label>';
-      contenido+='<textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>';
+      contenido+='<textarea name="description" id="description" cols="30" rows="10" class="form-control summernote"></textarea>';
       contenido+='</div>';
+      contenido+='</div>';
+      contenido+='<div class="col-sm-12">';
+       contenido+='<input type="text" id="idDia'+idDia+'" value="'+idDia+'" hidden>';
+      contenido+='<button type="submit" class="btn btn-primary">Guardar</button>';
+      contenido+='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a type="submit" name="eliminarDia" id="'+idDia+'" class="btn btn-danger" style="color:white;">Eliminar</a>';
       contenido+='</div>';
       contenido+='</div>';
       contenido+='</form>';
       contenido+='</div>';
+
+
+
+      $('#tabs-vertical').append(tab);
+      $('#tab-content').append(contenido);
+
+      validarFormularioDia(idDia);
+
+      $('.summernote').summernote({
+            height: 350,                 // set editor height
+            minHeight: null,             // set minimum height of editor
+            maxHeight: null,             // set maximum height of editor
+            focus: false                 // set focus to editable area after initializing summernote
+        });
+
+      $('a[name="eliminarDia"]').click(function(e){
+          eliminarDia(e.target.id);
+      }); 
+
+
+    
+
     }
+
+
+
+
+
+    function recuperarDias(idCategorie){
+
+           var contenido='',
+          tab='',
+          idDia;
+
+
+      $.ajax({
+        url:'day/'+idCategorie,
+        method:'GET',
+        async:false
+      }).done(function(data){
+            $('#tabs-vertical').html('');
+            $('#tab-content').html('');
+        $(data).each(function(keyhtml,value){
+          tab='';
+          contenido='';
+            tab+='<li class="nav-item">';
+            tab+='<a href="#dia'+value.id+'" class="nav-link" data-toggle="tab" aria-expanded="false">Dia <span name="nrodia">'+value.day+'</span></a>';
+            tab+='</li>';
+
+
+            contenido+='<div class="tab-pane" id="dia'+value.id+'">';
+            contenido+='<form id="form-dia'+value.id+'">';
+            contenido+='<div class="row">';
+            contenido+='<div class="col-sm-12">';
+            contenido+='<div class="form-group">';
+            contenido+='<label for="">Titulo</label>';
+            contenido+='<input type="text" name="title" class="form-control" value="'+value.title+'">';
+            contenido+='</div>';
+            contenido+='</div>';
+            contenido+='<div class="col-sm-12">';
+            contenido+='<div class="form-group">';
+            contenido+='<label for="">Descripcion</label>';
+            contenido+='<textarea name="description" id="description" cols="30" rows="10" class="form-control summernote">'+value.description+'</textarea>';
+            contenido+='</div>';
+            contenido+='</div>';
+            contenido+='<div class="col-sm-12">';
+             contenido+='<input type="text" id="idDia'+value.id+'" value="'+value.id+'" hidden>';
+            contenido+='<button type="submit" class="btn btn-primary">Guardar</button>';
+            contenido+='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a type="submit" name="eliminarDia" id="'+value.id+'" class="btn btn-danger" style="color:white;">Eliminar</a>';
+            contenido+='</div>';
+            contenido+='</div>';
+            contenido+='</form>';
+            contenido+='</div>';
+            $('#tabs-vertical').append(tab);
+            $('#tab-content').append(contenido);
+            validarFormularioDia(value.id);
+            $('.summernote').summernote({
+            height: 350,                 // set editor height
+            minHeight: null,             // set minimum height of editor
+            maxHeight: null,             // set maximum height of editor
+            focus: false                 // set focus to editable area after initializing summernote
+        });
+        });
+
+      });
+
+
+      
+      $('#contenedor-day').css('display','block');
+
+       $('a[name="eliminarDia"]').click(function(e){
+          eliminarDia(e.target.id);
+      }); 
+      
+
+    
+
+    }
+
+
+
+
+
+
+
+    $('#agregrar-itinerary').click(function(){
+
+     var numeroDia =  $('#tabs-vertical .nav-item:last-child a span').text();
+
+     if(numeroDia==''){ 
+      generarForm(idCategorie,1);
+     }else{     
+      generarForm(idCategorie,parseInt(numeroDia)+1);
+     }
+
+    });
+
+
+
+
+
+    $('#form-itinerary').validate({
+      rules:{
+        'title-itinerary':{required:true},
+        'tour-itinerary':{required:true}
+      },
+      messages:{
+        'title-itinerary':{required:"Ingrese el titulo por favor"},
+        'tour-itinerary':{required:"Seleccione el tour"}
+      },
+      submitHandler:function(){
+
+        storeItinerary = new FormData($('#form-itinerary')[0]);
+
+        $.ajax({
+          url:'itinerary',
+          headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+          method:'POST',
+          data:storeItinerary,
+          processData:false,
+          contentType:false
+        }).done(function(data){
+
+          idCategorie=data;
+          table_itinerary.ajax.reload();
+          $('#title-itinerary').attr('disabled','true');
+          $('#tour-itinerary').attr('disabled','true');
+
+          $('#contenedor-day').css('display','block');
+          $.Notification.notify('success', 'bottom right', 'Por favor ingrese los dias');
+
+
+        }).fail(function(data){
+              if(data.status === 401){
+                    $(location).prop('pathname','/')
+                }
+                if(data.status === 422){
+                    $errors = data.responseJSON;
+                    $.each($errors,function(key,value){
+                        if(value['tour-itinerary']!=undefined){
+                            $.Notification.notify('error', 'bottom right', 'ya se le asigno un itinerario a este tour');
+                        }
+                    })
+                }
+        });
+      }
+    });
+
+
+    $('#form-itinerary-edit').validate({
+      rules:{
+        'title-itinerary-edit':{required:true},
+        'tour-itinerary-edit':{required:true}
+      },
+      messages:{
+        'title-itinerary-edit':{required:"Ingrese el titulo por favor"},
+        'tour-itinerary-edit':{required:"Seleccione el tour"}
+      },
+      submitHandler:function(){
+
+        updateItinerary = new FormData($('#form-itinerary-edit')[0]);
+        updateItinerary.append('_method','PUT');
+
+        var idItinerario = $('#idItinerario').val();
+
+        $.ajax({
+          url:'itinerary/'+idItinerario,
+          headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+          method:'POST',
+          data:updateItinerary,
+          processData:false,
+          contentType:false
+        }).done(function(data){
+        
+          table_itinerary.ajax.reload();
+          $.Notification.notify('success', 'bottom right', 'Los datos fueron actualizados correctamente');
+        }).fail(function(data){
+              if(data.status === 401){
+                    $(location).prop('pathname','/')
+                }
+                if(data.status === 422){
+                    $errors = data.responseJSON;
+                    $.each($errors,function(key,value){
+                        if(value['tour-itinerary-edit']!=undefined){
+                            $.Notification.notify('error', 'bottom right', 'ya se le asigno un itinerario a este tour');
+                        }
+                    })
+                }
+        });
+      }
+    });
+
+
+
+
+
+function validarFormularioDia(dia){
+
+  $('#form-dia'+dia).validate({
+    rules:{
+      title:{required:true},
+      description:{required:true}
+    },
+    messages:{
+      title:{required:"Ingrese el titulo por favor"},
+      description:{required:"Ingrese la descripcion por favor"}
+    },
+    submitHandler:function(){
+
+        var updateDay = new FormData($('#form-dia'+dia)[0]);
+        updateDay.append('_method','PUT');
+        var idDia = $('#idDia'+dia).val();
+
+        $.ajax({
+          url:'day/'+idDia,
+          headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+          method:'POST',
+          data:updateDay,
+          processData:false,
+          contentType:false
+        }).done(function(data){
+          $.Notification.notify('success', 'bottom right', 'Los datos fueron guardados exitosamente');
+        }).fail(function(data){
+          if(data.status === 401){
+                        $(location).prop('pathname','/')
+                    }
+                    if(data.status === 422){
+                        $errors = data.responseJSON;
+                        $.each($errors,function(key,value){
+                            if(value['description']!=undefined){
+                                $.Notification.notify('error', 'bottom right', 'Por favor revise los campos');
+                            }
+                        })
+                    }
+        });
+    }
+  });
+}
+
+function eliminarDia(id){
+
+ 
+  $('a[href="#dia'+id+'"]').remove();
+  $('#dia'+id).remove();
+}
+
+
+
+
+
+
+$('#cancel-edit').click(function(){
+  $('#form-itinerary').css('display','block');
+  $('#form-itinerary-edit').css('display','none');
+  $('#table-itinerary tr').css('background','white').css('color','black');
+
+
+  $('#tabs-vertical .nav-item:last-child a span').text('');
+  $('#form-itinerary')[0].reset();
+  $('#title-itinerary').removeAttr('disabled');
+  $('#tour-itinerary').removeAttr('disabled');
+  $('#tabs-vertical').html('');
+  $('#tab-content').html('');
+  $('#contenedor-day').css('display','none');
+
+
+});
+
+
+
 
 
   });

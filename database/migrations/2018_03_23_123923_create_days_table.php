@@ -15,11 +15,10 @@ class CreateDaysTable extends Migration
     {
         Schema::create('days', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('itinerarie_id')->unsigned();
-            $table->foreign('itinerarie_id')->references('id')->on('itineraries');
-            $table->string('name',50);
-            $table->string('titulo',100);
-            $table->string('description',500);
+            $table->integer('itinerary_id')->unsigned();
+            $table->integer('day')->references('id')->on('tours');
+            $table->string('title',255);
+            $table->string('description',1000);
             $table->timestamps();
         });
     }

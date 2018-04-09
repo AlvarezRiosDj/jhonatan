@@ -14,7 +14,7 @@
 
 Route::view('','public.es.index');
 Route::view('admin','admin.index')->middleware('auth');;
-
+Route::get('login', 'LoginController@index')->name('login');
 
 
 Route::resource('login','LoginController');
@@ -23,6 +23,8 @@ Route::resource('lang','LanguageController');
 Route::resource('categorie','CategorieController');
 Route::resource('multimedia','MultimediaController');
 Route::resource('menu','MenuController');
+Route::resource('itinerary','ItineraryController');
+Route::resource('day','DayController');
 
 //aqui las rutas para administrar el tour
 Route::resource('turismo','TourController');
