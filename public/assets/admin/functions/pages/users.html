@@ -75,8 +75,8 @@
                 <label for="privilege-user">Repetir Password<span class="kv-reqd">*</span></label>
 
                 <select name="privilege-user" id="privilege-user" class="form-control">
-                  <option value="Normal">Normal</option>
-                  <option value="Administrador">Administrador</option>
+                  <option value="normal">Normal</option>
+                  <option value="administrador">Administrador</option>
                 </select>
               </div>
             </div>
@@ -141,8 +141,8 @@
                 <label for="privilege-user-edit">Privilegios<span class="kv-reqd">*</span></label>
 
                 <select name="privilege-user-edit" id="privilege-user-edit" class="form-control">
-                  <option value="Normal">Normal</option>
-                  <option value="Administrador">Administrador</option>
+                  <option value="normal">Normal</option>
+                  <option value="administrador">Administrador</option>
                 </select>
                 <input type="text" name="id-user" id="id-user" hidden>
               </div>
@@ -269,7 +269,16 @@ order: [[0,"desc"]]
 
   $('#table-users').on('click','a[href="#eliminar"]',function(){
     var recuperaDatos = table_user.row($(this).parents("tr")).data();
-    alert("funcion actualmente desabilitada");
+    var idusuario = recuperaDatos['id'];
+      $.ajax({
+        url:'user/'+idusuario,
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        method:'DELETE'
+      }).done(function(data){
+
+      }).fail(function(data){
+        alert('ha ocurrido un error');
+      });
 
 });
 

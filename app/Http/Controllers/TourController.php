@@ -6,6 +6,7 @@ use DB;
 use App\Tour;
 use App\Categorie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str as Str;
 
 class TourController extends Controller
 {
@@ -42,7 +43,6 @@ class TourController extends Controller
   
 
         $this->validate($request,[
-
                 'input-img-tour'=>'required',
                 'input-title-tour'=>'required',
                 'input-price-tour'=>'required',
@@ -53,12 +53,12 @@ class TourController extends Controller
                 'input-slug-tour'=>'required'
         ]);
 
-$abbrLanguage = DB::table('languages')->where('id',$request['input-lang-tour'])->value('abbreviated');
+
                 $file = $request->file('input-img-tour'); //envia la ruta del archivo en el cliente
                 $extension = $file->getClientOriginalExtension(); //envia la extension del archivo
                 $fileName = time() . '.' . $extension;
-                $file->move(public_path('assets/public/content/lang/'.$abbrLanguage.'/tour'),$fileName);
-                $ruta = 'assets/public/content/lang/'.$abbrLanguage.'/tour'.$fileName;
+                $file->move(public_path('assets/public/content/img/'),$fileName);
+                $ruta = 'assets/public/content/img/'.$fileName;
 
         Tour::create([
             'img'=>$ruta,
@@ -68,7 +68,7 @@ $abbrLanguage = DB::table('languages')->where('id',$request['input-lang-tour'])-
             'name'=>$request['input-title-tour'],
             'price'=>$request['input-price-tour'],
             'slider'=>$request['input-slider-tour'],
-            'slug'=>$request['input-slug-tour'],
+            'slug'=>Str::slug($request['input-slug-tour']),
             'description_short'=>$request['input-short-description'],
             'description_complete'=>$request['input-description-tour'],
             'status'=>$request['input-status-tour']
@@ -76,6 +76,7 @@ $abbrLanguage = DB::table('languages')->where('id',$request['input-lang-tour'])-
 
 
     }
+
 
     /**
      * Display the specified resource.
@@ -107,9 +108,78 @@ $abbrLanguage = DB::table('languages')->where('id',$request['input-lang-tour'])-
      * @param  \App\Tour  $tour
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tour $tour)
+    public function update(Request $request, $id)
     {
-        //
+
+        $tour = Tour::find($id);
+ 
+
+        if ($tour->slug == $request['input-slug-tour-edit']) {
+               $this->validate($request,[
+                        'input-title-tour-edit'=>'required',
+                        'input-price-tour-edit'=>'required',
+                        'input-short-description-edit'=>'required',
+                        'input-description-tour-edit'=>'required',
+                        'input-categorie-tour-edit'=>'required',
+                        'input-status-tour-edit'=>'required',
+                       ]);
+            
+        }else{
+
+                $this->validate($request,[
+                        'input-title-tour-edit'=>'required',
+                        'input-price-tour-edit'=>'required',
+                        'input-short-description-edit'=>'required',
+                        'input-description-tour-edit'=>'required',
+                        'input-categorie-tour-edit'=>'required',
+                        'input-status-tour-edit'=>'required|unique:tours,slug',
+                        'input-slug-tour-edit'=>'required'
+                ]);
+        }
+
+
+       if ($request['input-img-tour-edit'] != null ) {
+             if (\File::exists(public_path($tour->img))) {
+                  \File::delete(public_path($tour->img));
+              }
+
+              $file = $request->file('input-img-tour-edit');
+              $extension = $file->getClientOriginalExtension();
+              $fileName = time().'.'.$extension;
+              $file->move(public_path('assets/public/content/img/'),$fileName);
+              $ruta = 'assets/public/content/img/'.$fileName;
+
+                     $tour->fill([
+                        'meta_description'=>$request['input-meta-description-tour-edit'],
+                        'meta_keywords'=>$request['input-meta-keywords-tour-edit'],
+                        'name'=>$request['input-title-tour-edit'],
+                        'img'=>$ruta,
+                        'slug'=>$request['input-slug-tour-edit'],
+                        'description_short'=>$request['input-short-description-edit'],
+                        'description_complete'=>$request['input-description-tour-edit'],
+                        'status'=>$request['input-status-tour-edit'],
+                        'price'=>$request['input-price-tour-edit'],
+                        'slider'=>$request['input-slider-tour-edit']      
+                       ]);
+
+       }else{
+
+            $tour->fill([
+                        'meta_description'=>$request['input-meta-description-tour-edit'],
+                        'meta_keywords'=>$request['input-meta-keywords-tour-edit'],
+                        'name'=>$request['input-title-tour-edit'],
+                        'slug'=>$request['input-slug-tour-edit'],
+                        'description_short'=>$request['input-short-description-edit'],
+                        'description_complete'=>$request['input-description-tour-edit'],
+                        'status'=>$request['input-status-tour-edit'],
+                        'price'=>$request['input-price-tour-edit'],
+                        'slider'=>$request['input-slider-tour-edit']      
+                       ]);
+
+       }
+
+       $tour->save();
+
     }
 
     /**

@@ -170,6 +170,11 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        return "llegaste a eliminar";
+       
+
+        if ($user->privilege != 'administrador') {
+            $user->delete();
+        }
+        
     }
 }

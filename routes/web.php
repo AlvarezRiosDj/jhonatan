@@ -17,7 +17,7 @@ Route::view('admin','admin.index')->middleware('auth');;
 Route::get('login', 'LoginController@index')->name('login');
 
 
-Route::resource('login','LoginController');
+Route::resource('log','LoginController');
 Route::resource('user','UserController');
 Route::resource('lang','LanguageController');
 Route::resource('categorie','CategorieController');
@@ -49,6 +49,9 @@ Route::get('video/show/{id}','VideoController@showVideo');
 
 
 //Rutas Comentarios de los tours
+
+
+
 
 
 // Rutas de Public

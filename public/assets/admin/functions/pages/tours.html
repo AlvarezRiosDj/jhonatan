@@ -266,12 +266,13 @@ i[id^='edit']{
   <div class="row">
     <div class="col-sm-8">
       <label for="">Slug (es la url amigable)</label>
-      <input type="" name="input-slug-tour-edit" class="form-control">
+      <input type="" name="input-slug-tour-edit" id="input-slug-tour-edit" class="form-control">
     </div>
     <div class="col-sm-4">
       <div class="form-group">
             <hr>
             <div class="text-right">
+              <input type="text" id="idTour" hidden>
               <button type="submit" class="btn btn-primary">Guardar</button>
               <a class="btn btn-primary" id="cancel-edit">Cancelar</a>      
             </div>
@@ -377,6 +378,12 @@ allowedFileExtensions: ["jpg", "png", "gif"]
 	$(function(){
 
 
+    var protocolo = window.location.protocol;
+    var dominio = window.location.host;
+    var urlcorta = protocolo+'//'+dominio;
+
+
+
 	//iniciamos el datatable
 
    var table_user = $('#table-tour').DataTable({
@@ -441,6 +448,7 @@ order: [[0,"desc"]]
         cadenLang+='<option value="'+value['id']+'">'+value['name']+'</option>'
       });
       $('#input-lang-tour').html(cadenLang);
+      $('#input-lang-tour-edit').html(cadenLang);
     });
 	}
 
@@ -492,6 +500,7 @@ order: [[0,"desc"]]
         }
 
         $('#input-categorie-tour').html(categorias);
+        $('#input-categorie-tour-edit').html(categorias);
     }).fail(function(data){
         alert("ha ocurrido un error al recuperar");
     });
@@ -580,8 +589,10 @@ order: [[0,"desc"]]
     },
     submitHandler:function(form){
       var updateTour = new FormData($('#form-tour-edit')[0]);
+        updateTour.append('_method','PUT');
+        var idTour = $('#idTour').val();
         $.ajax({
-          url:'turismo',
+          url:'turismo/'+idTour,
           headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
           method:'POST',
           data:updateTour,
@@ -599,14 +610,40 @@ order: [[0,"desc"]]
 
 
 function recuperarTour(idTour){
+
   $.ajax({
     url:'turismo/'+idTour,
     method:'GET'
   }).done(function(data){
     $(data).each(function(key,value){
+
+      $('#idTour').val(value['id']);
+
+      $("#input-img-tour-edit").fileinput('refresh',{
+        defaultPreviewContent: '<img src="'+urlcorta+'/'+value['img']+'" class="img-fluid">',
+        });
+      $("#input-img-tour-edit").fileinput('clear');
+
       $('#input-title-tour-edit').val(value['name']);
       $('#input-price-tour-edit').val(value['price']);
+      $('#input-short-description-edit').val(value['description_short']);
+      $('#input-description-tour-edit').summernote('destroy');
+      $('#input-description-tour-edit').val(value['description_complete']);
+      $('#input-description-tour-edit').summernote({
+            height: 350,                 // set editor height
+            minHeight: null,             // set minimum height of editor
+            maxHeight: null,             // set maximum height of editor
+            focus: false                 // set focus to editable area after initializing summernote
+        });
+      $('#input-meta-description-tour-edit').val(value['meta_description']);
+      $('#input-meta-keywords-tour-edit').val(value['meta_keywords']);
+      $('#input-slug-tour-edit').val(value['slug']);
+      $('#input-status-tour-edit').val(value['status']);
     });
+
+    
+
+    
  
   }).fail(function(data){
       alert("ha ocurrido un error");
