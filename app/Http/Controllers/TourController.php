@@ -71,7 +71,9 @@ class TourController extends Controller
             'slug'=>Str::slug($request['input-slug-tour']),
             'description_short'=>$request['input-short-description'],
             'description_complete'=>$request['input-description-tour'],
-            'status'=>$request['input-status-tour']
+            'status'=>$request['input-status-tour'],
+            'latitud'=>$request['latitud'],
+            'longitud'=>$request['longitud']
             ]);
 
 
@@ -154,12 +156,14 @@ class TourController extends Controller
                         'meta_keywords'=>$request['input-meta-keywords-tour-edit'],
                         'name'=>$request['input-title-tour-edit'],
                         'img'=>$ruta,
-                        'slug'=>$request['input-slug-tour-edit'],
+                        'slug'=>Str::slug($request['input-slug-tour-edit']),
                         'description_short'=>$request['input-short-description-edit'],
                         'description_complete'=>$request['input-description-tour-edit'],
                         'status'=>$request['input-status-tour-edit'],
                         'price'=>$request['input-price-tour-edit'],
-                        'slider'=>$request['input-slider-tour-edit']      
+                        'slider'=>$request['input-slider-tour-edit'],
+                        'latitud'>=$request['latitude-edit'],
+                        'longitud'=>$request['longitud-edit']    
                        ]);
 
        }else{
@@ -168,12 +172,14 @@ class TourController extends Controller
                         'meta_description'=>$request['input-meta-description-tour-edit'],
                         'meta_keywords'=>$request['input-meta-keywords-tour-edit'],
                         'name'=>$request['input-title-tour-edit'],
-                        'slug'=>$request['input-slug-tour-edit'],
+                        'slug'=>Str::slug($request['input-slug-tour-edit']),
                         'description_short'=>$request['input-short-description-edit'],
                         'description_complete'=>$request['input-description-tour-edit'],
                         'status'=>$request['input-status-tour-edit'],
                         'price'=>$request['input-price-tour-edit'],
-                        'slider'=>$request['input-slider-tour-edit']      
+                        'slider'=>$request['input-slider-tour-edit'],
+                        'latitud'>=$request['latitude-edit'],
+                        'longitud'=>$request['longitud-edit']        
                        ]);
 
        }

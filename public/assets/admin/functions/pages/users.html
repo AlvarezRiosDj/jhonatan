@@ -275,7 +275,7 @@ order: [[0,"desc"]]
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         method:'DELETE'
       }).done(function(data){
-
+          table_user.ajax.reload();
       }).fail(function(data){
         alert('ha ocurrido un error');
       });
@@ -405,11 +405,13 @@ order: [[0,"desc"]]
           processData:false,
           contentType:false,
         }).done(function(data){
-          $.Notification.notify('success', 'bottom right', 'Usuario ha sido mofificado exitosamente');
-          table_user.ajax.reload();
+
+           $.Notification.notify('success', 'bottom right', 'Usuario ha sido mofificado exitosamente');
+           table_user.ajax.reload();
            $('#form-user-edit').css('display','none');
            $('#form-user').css('display','block');
            $('#form-user-edit')[0].reset();
+
         }).fail(function(data){
               $.Notification.notify('error', 'bottom right', 'Ha ocurrido un error');
             });

@@ -25,7 +25,8 @@ class CreateToursTable extends Migration
             $table->string('description_complete',500)->nullable();
             $table->integer('cant_person')->nullable();
             $table->string('characteristics',1000)->nullable();
-            $table->string('map',255)->nullable();
+            $table->string('latitud',200)->nullable();
+            $table->string('longitud',200)->nullable();
             $table->string('status',20)->nullable();
             $table->float('price',8,2)->nullable();
             $table->integer('slider')->nullable();
