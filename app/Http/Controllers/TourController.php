@@ -113,6 +113,9 @@ class TourController extends Controller
     public function update(Request $request, $id)
     {
 
+
+  
+
         $tour = Tour::find($id);
  
 
@@ -162,7 +165,7 @@ class TourController extends Controller
                         'status'=>$request['input-status-tour-edit'],
                         'price'=>$request['input-price-tour-edit'],
                         'slider'=>$request['input-slider-tour-edit'],
-                        'latitud'>=$request['latitude-edit'],
+                        'latitud'=>$request['latitud-edit'],
                         'longitud'=>$request['longitud-edit']    
                        ]);
 
@@ -178,11 +181,13 @@ class TourController extends Controller
                         'status'=>$request['input-status-tour-edit'],
                         'price'=>$request['input-price-tour-edit'],
                         'slider'=>$request['input-slider-tour-edit'],
-                        'latitud'>=$request['latitude-edit'],
+                        'latitud'=>$request['latitud-edit'],
                         'longitud'=>$request['longitud-edit']        
                        ]);
 
        }
+
+
 
        $tour->save();
 

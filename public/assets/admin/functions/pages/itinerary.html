@@ -201,7 +201,7 @@ $('#table-itinerary').on('click','a[href="#editar"]',function(){
     var recuperaDatos = table_itinerary.row($(this).parents("tr")).data();
 
 
-
+idCategorie = recuperaDatos['id'];
 
       $('#form-itinerary').css('display','none');
       $('#form-itinerary-edit').css('display','block');
@@ -347,9 +347,6 @@ $('#table-itinerary').on('click','a[href="#eliminar"]',function(){
           eliminarDia(e.target.id);
       }); 
 
-
-    
-
     }
 
 
@@ -358,7 +355,7 @@ $('#table-itinerary').on('click','a[href="#eliminar"]',function(){
 
     function recuperarDias(idCategorie){
 
-           var contenido='',
+          var contenido='',
           tab='',
           idDia;
 
@@ -370,14 +367,12 @@ $('#table-itinerary').on('click','a[href="#eliminar"]',function(){
       }).done(function(data){
             $('#tabs-vertical').html('');
             $('#tab-content').html('');
-        $(data).each(function(keyhtml,value){
+        $(data).each(function(key,value){
           tab='';
           contenido='';
             tab+='<li class="nav-item">';
             tab+='<a href="#dia'+value.id+'" class="nav-link" data-toggle="tab" aria-expanded="false">Dia <span name="nrodia">'+value.day+'</span></a>';
             tab+='</li>';
-
-
             contenido+='<div class="tab-pane" id="dia'+value.id+'">';
             contenido+='<form id="form-dia'+value.id+'">';
             contenido+='<div class="row">';
@@ -434,10 +429,10 @@ $('#table-itinerary').on('click','a[href="#eliminar"]',function(){
 
 
     $('#agregrar-itinerary').click(function(){
-
      var numeroDia =  $('#tabs-vertical .nav-item:last-child a span').text();
-
+     
      if(numeroDia==''){ 
+      alert(idCategorie);
       generarForm(idCategorie,1);
      }else{     
       generarForm(idCategorie,parseInt(numeroDia)+1);
@@ -590,8 +585,19 @@ function validarFormularioDia(dia){
 function eliminarDia(id){
 
  
-  $('a[href="#dia'+id+'"]').remove();
-  $('#dia'+id).remove();
+ 
+
+      $.ajax({
+        url:'day/'+id,
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        method:'DELETE'
+      }).done((data)=>{
+          $('a[href="#dia'+id+'"]').remove();
+          $('#dia'+id).remove();
+      });
+
+
+
 }
 
 

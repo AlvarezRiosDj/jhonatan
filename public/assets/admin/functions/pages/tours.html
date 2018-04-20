@@ -709,16 +709,46 @@ function recuperarTour(idTour){
       $('#input-meta-keywords-tour-edit').val(value['meta_keywords']);
       $('#input-slug-tour-edit').val(value['slug']);
       $('#input-status-tour-edit').val(value['status']);
+      $('#latitud-edit').val(value['latitud']);
+      $('#longitud-edit').val(value['longitud']);
+      initMapEdit(value['latitud'],value['longitud']);
     });
 
     
-
+    
+    
     
  
   }).fail(function(data){
       alert("ha ocurrido un error");
   });
 }
+
+
+
+
+function initMapEdit(latitud,longitud) {
+
+        latitud = Number(latitud);
+        longitud = Number(longitud);
+        var uluru = {lat: latitud, lng: longitud};
+        var map = new google.maps.Map(document.getElementById('map-edit'), {
+          zoom: 15,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map,
+          draggable:true
+        });
+          google.maps.event.addListener(marker,'dragend',function(event) {
+            document.getElementById("latitud-edit").value = this.getPosition().lat().toString();
+            document.getElementById("longitud-edit").value = this.getPosition().lng().toString();
+         });
+
+      }
+
+
 
 
 
