@@ -30,6 +30,7 @@ class CreateToursTable extends Migration
             $table->string('status',20)->nullable();
             $table->float('price',8,2)->nullable();
             $table->integer('slider')->nullable();
+            $table->integer('video')->nullable();
             $table->float('offer',8,2)->nullable();
             $table->date('start_offer')->nullable();
             $table->date('end_offer')->nullable();

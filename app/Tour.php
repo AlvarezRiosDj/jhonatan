@@ -22,6 +22,7 @@ class Tour extends Model
     	'status',
     	'price',
         'slider',
+        'video',
     	'offer',
     	'start_offer',
     	'end_offert',

@@ -276,6 +276,9 @@ order: [[0,"desc"]]
         method:'DELETE'
       }).done(function(data){
           table_user.ajax.reload();
+          $('#form-user-edit').css('display','none');
+          $('#form-user').css('display','block');
+         // $.Notification.notify('success', 'bottom right', 'El usuario fue eliminado exitosamente');
       }).fail(function(data){
         alert('ha ocurrido un error');
       });

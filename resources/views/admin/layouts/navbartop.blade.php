@@ -74,7 +74,7 @@
                                 </div>
 
                                 <!-- item-->
-                                {!!Form::open(['url'=>'login/1','method'=>'delete'])!!}
+                                {!!Form::open(['url'=>'log/1','method'=>'delete'])!!}
                                 <button class="dropdown-item notify-item">
                                     <i class="mdi mdi-logout"></i> <span>Logout</span>
                                 </button>

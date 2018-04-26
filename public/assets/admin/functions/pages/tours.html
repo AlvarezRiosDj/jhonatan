@@ -64,19 +64,29 @@ i[id^='edit']{
             <input type="text" class="form-control" name="input-title-tour" id="nput-title-tour">
           </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-2">
           <div class="form-group">
             <label for="input-price-tour">Precio</label>
             <input type="number" class="form-control" name="input-price-tour" id="input-price-tour" step="any">
           </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
           <div class="form-group">
-            <label for="input-title-tour">Slider</label>          
+            <label for="input-slider-tour">Slider</label>          
             <select name="input-slider-tour" id="input-slider-tour" class="form-control">
             </select>
           </div>
         </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="input-video-tour">video</label>          
+            <select name="input-video-tour" id="input-video-tour" class="form-control">
+            </select>
+          </div>
+        </div>
+
+
 	</div>
 
 	<div class="row">
@@ -206,16 +216,23 @@ i[id^='edit']{
             <input type="text" class="form-control" name="input-title-tour-edit" id="input-title-tour-edit">
           </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-2">
           <div class="form-group">
             <label for="input-price-tour-edit">Precio</label>
             <input type="number" class="form-control" name="input-price-tour-edit" id="input-price-tour-edit" step="any">
           </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
           <div class="form-group">
-            <label for="input-title-tour-edit">Slider</label>          
+            <label for="input-slider-tour-edit">Slider</label>          
             <select name="input-slider-tour-edit" id="input-slider-tour-edit" class="form-control">
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="input-video-tour-edit">video</label>          
+            <select name="input-video-tour-edit" id="input-video-tour-edit" class="form-control">
             </select>
           </div>
         </div>
@@ -497,12 +514,6 @@ order: [[1,"desc"]]
 
 
 
-
-
-
-
-
-
 	//recuperamos los lenguages
 	function recuperaLang(){
 		$.ajax({
@@ -536,6 +547,29 @@ order: [[1,"desc"]]
     });
   }
   recuperarSlider();
+
+
+  function recuperarVideo(){
+      
+      $.ajax({
+        url:'video',
+        method:'GET'
+      }).done(function(data){
+        var cadena='';
+          $(data).each(function(key,value){
+              cadena+='<option value="'+value['id']+'">'+value['name']+'</option>';
+          });
+          $('#input-video-tour').html(cadena);
+          $('#input-video-tour-edit').html(cadena);
+
+      }).fail(function(){
+        alert("ha ocurrido un error al tratar de recuperar videos")
+      });
+
+  }
+
+
+  recuperarVideo();
 
   //llamaos a la funcion para recuperar los lenguajes
   recuperaLang();
@@ -696,6 +730,8 @@ function recuperarTour(idTour){
 
       $('#input-title-tour-edit').val(value['name']);
       $('#input-price-tour-edit').val(value['price']);
+      $('#input-slider-tour-edit').val(value['slider']);
+      $('#input-video-tour-edit').val(value['video']);
       $('#input-short-description-edit').val(value['description_short']);
       $('#input-description-tour-edit').summernote('destroy');
       $('#input-description-tour-edit').val(value['description_complete']);

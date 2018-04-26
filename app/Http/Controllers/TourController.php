@@ -68,6 +68,7 @@ class TourController extends Controller
             'name'=>$request['input-title-tour'],
             'price'=>$request['input-price-tour'],
             'slider'=>$request['input-slider-tour'],
+            'video'=>$request['input-video-tour'],
             'slug'=>Str::slug($request['input-slug-tour']),
             'description_short'=>$request['input-short-description'],
             'description_complete'=>$request['input-description-tour'],
@@ -165,6 +166,7 @@ class TourController extends Controller
                         'status'=>$request['input-status-tour-edit'],
                         'price'=>$request['input-price-tour-edit'],
                         'slider'=>$request['input-slider-tour-edit'],
+                        'video'=>$request['input-video-tour-edit'],
                         'latitud'=>$request['latitud-edit'],
                         'longitud'=>$request['longitud-edit']    
                        ]);
@@ -181,6 +183,7 @@ class TourController extends Controller
                         'status'=>$request['input-status-tour-edit'],
                         'price'=>$request['input-price-tour-edit'],
                         'slider'=>$request['input-slider-tour-edit'],
+                        'video'=>$request['input-video-tour-edit'],
                         'latitud'=>$request['latitud-edit'],
                         'longitud'=>$request['longitud-edit']        
                        ]);
