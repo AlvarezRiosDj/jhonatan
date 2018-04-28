@@ -432,8 +432,7 @@ $('#table-itinerary').on('click','a[href="#eliminar"]',function(){
      var numeroDia =  $('#tabs-vertical .nav-item:last-child a span').text();
      
      if(numeroDia==''){ 
-      alert(idCategorie);
-      generarForm(idCategorie,1);
+         generarForm(idCategorie,1);
      }else{     
       generarForm(idCategorie,parseInt(numeroDia)+1);
      }
@@ -584,19 +583,17 @@ function validarFormularioDia(dia){
 
 function eliminarDia(id){
 
- 
- 
-
       $.ajax({
         url:'day/'+id,
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         method:'DELETE'
       }).done((data)=>{
+        alert(data);
           $('a[href="#dia'+id+'"]').remove();
           $('#dia'+id).remove();
+      }).fail((data)=>{
+          alert("ha ocurrido un error");
       });
-
-
 
 }
 
